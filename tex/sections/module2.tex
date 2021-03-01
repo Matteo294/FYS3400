@@ -1,0 +1,42 @@
+I start with a brief review of useful concepts to go trough Kittel's book
+
+\subsection*{General information about waves}
+Let us consider the wave equation 
+\begin{equation*}
+    \frac{\partial^2u(x,t)}{\partial x^2} = \frac{1}{v^2} \frac{\partial^2u(x,t)}{\partial t^2}
+\end{equation*}
+One solution is the function 
+\begin{equation*}
+    u(x,t) = Ae^{i(kx - \omega t)}
+\end{equation*}
+where $k$ and $\omega$ are two numbers such that $v^2 = \omega^2 / k^2$ and the minus sign at the exponent is purely conventional. \\
+One first important consideration is that 
+\begin{equation*}
+    u(x-vt,0) = Ae^{i(kx - kvt)} = Ae^{i(kx - \omega t)} = u(x, t)
+\end{equation*}
+this means that the value of the function $u$ at position $x$ at time $t$ is equal to the value of the function $t$ seconds before, in a position
+traslated from $x$ to the same distance that a particle with velocity $v$ would cover in the time $t$. In other words, these types of solutions
+are rigid waves that traslates in time and space without deforming with velocity $v$. If at time $t$ the point of a wave is at position $x_1$ where do we find it 
+at time $t_2 = t+t_0$? From what just said the same point will be at position $x(t_2) = x(t) + vt_0$. In general a wave point motion equation is $x(t) = x(0) + vt = x(0) + \frac{\omega}{k}t)$ so it moves
+with a velocity $v$ (called \emph{phase velocity}). \\ 
+Since the wave equation is a linear equation (derivatives do not "mix"), a linear combination of functions of the previous form is 
+still a solution. Hence, chosen $k_1, \dots, k_N$ and $\omega_1, \dots, \omega_n$ such that $\omega_i/k_i = v$, the function 
+\begin{equation*}
+    u(x,t) = \sum_{n=1}^N A(k_n) e^{i(k_nx - \omega(k_n) t)}
+\end{equation*}
+is still a solution of the equation (can be verified by direct subsitution and imposing polynomials identity).
+In particular we can take a "continous" linear combination such that 
+\begin{equation}
+    u(x,t) = \int_{-\infty}^{+\infty} A(k) e^{i(kx - \omega(k)t)} \, dk
+    \label{eq:waves_superposition}
+\end{equation}
+This function can be viewed as the Fouries transform of a function $u(k,t) = A(k)e^{ikx}$.
+Every function (wave) $A(k)$ sufficiently regular can be written in terms of a linear combination of sines and cosines (indeformable waves). \\
+Now suppose that $A(k)$ is peaked around a value $k_0$ so that we can expand $\omega(k)$ at first order 
+$$\omega(k) \simeq \omega(k_0) + \frac{d\omega(k)}{dk}(k-k_0)$$ Equaton \ref{eq:waves_superposition} can be rewritten as 
+\begin{equation*}
+    u(x,y) \simeq A(k_0)e^{i(k_0x - w(k_0) t)} \int_{-\infty}^{+\infty} e^{i(\omega'(k)(k-k_0))t} \, dk 
+    \equiv f(x,t) \cdot g(t)
+\end{equation*}
+The first factor $f(x,t) = A(k_0)e^{i(k_0x - w(k_0) t)}$ is a plane wave with phase velocity $\omega_0 \equiv \omega(k_0)$, while the second factor
+$g(t) = \int_{-\infty}^{+\infty} e^{i(\omega'(k)(k-k_0))t} \, dk$ modulates the wave in time as an envelope that moves with velocity $\omega'(k)$, called the \emph{group velocity}.
