@@ -11,7 +11,7 @@ Then the Madelung constant is $M = 2 \ln 2$
 \subsubsection*{(c)}
 A consequence of the presence of only a finite number of atoms is that symmetry is broken: each atom has now a different number of atoms on its right and left (except for the central one) and this 
 effect becomes smaller as the number of atoms increases (more atoms can be approximated as "centrals"). Remember that the Madelung constant is a geometrical factor related to the energy per molecule in the crystal. 
-One can now proceed in two different ways which will be equivalent in the limit of large $N$ as shown in figure \ref{fig:Madelung_constant_Natoms}. \\
+One can now proceed in two different ways which will be equivalent in the limit of large $N$ as shown in figure \ref{fig:Madelung_constant_Natoms}.
 \begin{enumerate}
     \item Neglect border effects and consider each atom as "central". This can be reasonable since the Coulomb potential decreases rapidly with the atom index. In this case the total energy of the lattice is approximately
     $U = NU_i$ where
@@ -21,12 +21,12 @@ One can now proceed in two different ways which will be equivalent in the limit 
         The total energy of the system can be computed as a sum over all the particles' interactions. If we begin the chain with a $Na^+$ atom, the charge of the $n-th$ atom in the chain is in atomic units $(-1)^n$, hence
         $$U = \frac{1}{2} \sum_{i \neq j} \frac{(-1)^i(-1)^j}{r_{ij}} = \frac{1}{2} \sum_{i \neq j} \frac{(-1)^{i+j}}{|i-j| \, a} =
         \frac{N\alpha}{2a}$$
-        and this provides an estimation for the Madelung constant. The factor 2 in the last expression has been added to consider the fact that the madelung constant is related to the energy of a molecule and not an atom.
+        and this provides an estimation for the Madelung constant $\alpha$.
 \end{enumerate} 
 The Madelung constant for both models as a function of the number of atoms is plotted in figure \ref{fig:Madelung_constant_Natoms}.
 \begin{figure}[h]
     \centering 
-    \includegraphics[scale=0.4]{figures/madelung.eps}
+    \includegraphics[scale=0.7]{figures/madelung.eps}
     \caption{Madelung constant as a function of the number of atoms}
     \label{fig:Madelung_constant_Natoms}
 \end{figure}
@@ -41,7 +41,14 @@ The equilibrium distance can be obtained by searching the minimum of the energy 
 \begin{equation*}
     \frac{\partial U_i}{\partial a} = 0
 \end{equation*}
-The equation can be solved numerically and the the result is reported in figure \ref{fig:idk}
+The equation can be solved numerically and the the result is reported in figure \ref{fig:NaCl_constant}
+
+\begin{figure}
+    \centering 
+    \includegraphics[scale=0.7]{figures/NaCl_constant.eps}
+    \caption{}
+    \label{fig:NaCl_constant}
+\end{figure}
 
 \subsection*{Exercise 2}
 \subsubsection*{(a)}
@@ -53,6 +60,8 @@ $$x = \frac{a}{2}\frac{1}{\cos\frac{\theta}{2}} = \frac{a}{\sqrt{3}}$$
 Hence the  height of the middle point is 
 $$h = \sqrt{a^2 - \frac{a^2}{3}} = \sqrt{\frac{2}{3}}a$$ hence the height of the base cell is $c = 2h = \sqrt{8/3}a$ and the $c/a$ ratio is $\sqrt{8/3}$.
 \subsubsection*{(c)}
+Just substitute $a=2r$ and calculate directly from the general formula.
+
 \subsection*{Exercise 3}
 Let us choose a set of parallel planes. From this set we choose the plane closer to the origin. The idea is to calculate the distance between planes as the distance from the origin to this plane. Let us suppose that the plane intersects the $x,y,z$ axes of a cube respectively in positions $x_1, x_2, x_3$: the crystal requires that 
 \begin{gather*} 
@@ -115,7 +124,7 @@ $$2 \ve k \cdot \ve G + G^2 = 0$$
 \section*{Exercise 7}
 
 \subsubsection*{(a)}
-Suppose that we have N sites, and n of them are vacancies. Let us calculate the entropy of the system as
+Suppose that we have N sites, and n of them are vacancies. Let us calculate the configurational entropy of the system as
 $$S = k_B \ln\omega$$
 If we imagine the sites as a 1D sequence we can calculate the number of possible ways to 
 combine $n$ objects of type $A$ with $N-n$ objects of type $B$. In this case
@@ -124,20 +133,28 @@ Let us take the logarithm of this expression and use the Stirling's approximatio
 $$\ln \omega = \ln(N!) - \ln(n!) - \ln((N-n)!) \approx N \ln N - n \ln n - (N-n)\ln(N-n)$$
 If temperature and pressure are constant, then the equilibrium state of the system is the one that minimizes the free energy
 $$G = H - TS = U + pV - TS$$
-If we assume $G=0$ at $T=0$ we can then search for the minimum of 
-$$\Delta G = \Delta U + \Delta(PV) - \Delta(TS)$$ and $\Delta U$ is energy variation due to the formation of vacancies, hence
-we can write it as $\Delta U = nE_f$ where $E_f$ is the energy required to remove a vacancy. But if we assume pressure, volume and temperature constant
-$$\Delta G = \Delta U - T\Delta S$$ 
-we can search for the minimum in this way 
-$$ 0 = \frac{d \Delta G}{dn} = \frac{\partial \Delta U}{\partial n} - k_BT\frac{\partial \Delta S}{\partial n} = 
-E_f - T\left[-\ln n - 1 + \ln (N-n) + 1 \right]$$
-$$\frac{E_f}{T} = \ln\left(\frac{N-n}{n}\right)$$
+Since the free energy of the lattice without vacancies is a constant, we can restrict the analysis to minimize the vacancies contribution only which practically
+means that we can minimize $$\left(\Delta G\right)_\text{vac} = G_\text{tot} - G_\text{no vacancies}$$
+If we assume pressure and temperature constant the expression becomes
+$$\Delta G = nE_f + npV_f- T\Delta S$$ 
+where $E_f$ is the energy required to remove a site and $V_f$ is the volume of a site.
+We can search for the minimum in this way 
+$$ 0 = \frac{d \Delta G}{dn} = E-f + pV_f - k_B\ln\left(\frac{N-n}{n}\right)$$
+$$\frac{E_f}{k_BT} = \ln\left(\frac{N-n}{n}\right)$$
 or
-$$\frac{n}{N-n} = \exp\left(-\frac{E_f}{k_B T}\right)$$
+$$\frac{n}{N-n} = \exp\left(-\frac{E_f}{k_B T}\right) \, \exp\left(-\frac{pV_f}{k_B T}\right)$$
 and if $n << N$
-$$c_v = \frac{n}{N} = \exp\left(-\frac{E_f}{k_B T}\right)$$
-This is the concentrarion of vacancies as a function of the temperature at constant pressure, temperature and volume.
-\newpage
+\begin{equation}
+    c_v = \frac{n}{N} = e^{-E_f/k_B T} \, e^{-p V/k_B T}
+    \label{eq:concentration}
+\end{equation}
+Pressure is just a particular case of the stress (it is just the case in which the force is orthogonal to the surface). Hence equation \ref{eq:concentration} can 
+be generalised to an applied stress with module $\sigma$
+\begin{equation*}
+    c_v = \frac{n}{N} = e^{-E_f/k_B T} \, e^{-\sigma V/k_B T}
+\end{equation*}
+
 \subsubsection*{(b)}
-In this context the formation energy is the energy required to form a vacancy, that is the energy to bring an atom from the crystal to the surface. \\
-The activation volume is 
+The formation energy is the energy required to move an atom from the site to the surface of the lattiec and in equation \ref{eq:concentration} is represented by $E_f$.
+When an atom is removed the lattice get deformed and it generates an internal stress. The deformation causes a variation in the volume and the difference between the final state of the 
+system (after moving the atom) and the initial state is the formation volume.
