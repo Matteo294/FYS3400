@@ -6,9 +6,10 @@ Let us consider the wave equation
     \frac{\partial^2u(x,t)}{\partial x^2} = \frac{1}{v^2} \frac{\partial^2u(x,t)}{\partial t^2}
 \end{equation*}
 One solution is the function 
-\begin{equation*}
+\begin{equation}
     u(x,t) = Ae^{i(kx - \omega t)}
-\end{equation*}
+    \label{eq:waveeq_solution}
+\end{equation}
 where $k$ and $\omega$ are two numbers such that $v^2 = \omega^2 / k^2$ and the minus sign at the exponent is purely conventional. \\
 One first important consideration is that 
 \begin{equation*}
@@ -40,3 +41,83 @@ $$\omega(k) \simeq \omega(k_0) + \frac{d\omega(k)}{dk}(k-k_0)$$ Equaton \ref{eq:
 \end{equation*}
 The first factor $f(x,t) = A(k_0)e^{i(k_0x - w(k_0) t)}$ is a plane wave with phase velocity $\omega_0 \equiv \omega(k_0)$, while the second factor
 $g(t) = \int_{-\infty}^{+\infty} e^{i(\omega'(k)(k-k_0))t} \, dk$ modulates the wave in time as an envelope that moves with velocity $\omega'(k)$, called the \emph{group velocity}.
+
+\subsection*{Phonons and quantization}
+\subsubsection*{Phonons}
+Let us consider a lattice with monoatomic base. The force acting on the $n-th$ atom in the chain is 
+$$F_n = C\left(x_{n+1} + x_{n-1} - 2 x_n\right)$$
+where $x_k$ indicates the displacement of the $k-th$ particle with respect to its equilibrium position. \\
+We are interested in solutions of the type 
+\begin{equation*}
+    x_n(t) = A \exp\left(i(nka - \omega_n t)\right)
+\end{equation*}
+that is waves of the form as in \ref{eq:waveeq_solution}. By popping this expression into the Newton motion equation for the $n-th$ particle,
+we get out that in order to satisfy the equality the following relation must hold
+\begin{equation*}
+    \omega(k) = 2\sqrt{\frac{C}{M}} \ \left|\sin\left(\frac{ka}{2}\right)\right|
+\end{equation*}
+this is called the \emph{dispersion relation} and (intuitively) indicates the relationship between the time periodicity ($\omega$) and space periodicity ($k$). \\
+For $|k| < \pi/a$ we say that we are in the Brillouin zone of the crystal: the border's values $k=\pm \pi/a$ represents the maximum value for $\omega(k)$ and between 
+this range all possible values of $\omega(k)$ are covered: in fact it is easy to see that $\omega(k) = \omega(2k+N\pi/a), \ N \in \mathbf{N}$ (see plots on Kittel for better intuition). Remeber that
+$2N\pi/a$ is a reciprocal lattice vector! The particualr significance of the borders of the Brillouin zone is that the wave is standing: there is no space dependence (we wil examin this point later better, but for a visual 
+understanding see https://www.khanacademy.org/science/high-school-physics/waves-and-sound/standing-waves-2/v/standing-waves-on-strings). Just note that in this case 
+$x_n(t) = (-1)^n \ A \exp(i \omega_0 t)$ and $$x_{n+1}(t)/x_n(t) = -1$$ or, in other words, each atom moves in the opposite direction of the one before: this implies that the center of mass of the chain stays fixed
+(and explains why phonons do not carry physical momentum).
+
+\subsubsection*{Quantization}
+Let us consider an infinitesimal volume $dV$ centered in $\ve{r}$ of a monoatomic crystal and let us consider a standing wave of the type 
+\begin{equation}
+    u(t) = u_0 \cos(kx)\cos(\omega t)
+    \label{eq:continuous_displacement}
+\end{equation}
+Stationarity requires that $nKa = \pi$ where $a$ is the lattice constant. \\
+Now let us use the quantum virial theorem to calculate
+\begin{equation*}
+    \left(n + \frac{1}{2}\right) \hbar \omega = \left\langle H \right\rangle = 
+    \left\langle T \right\rangle + \left\langle V \right\rangle = 2\left\langle T \right\rangle
+    \label{eq:energy_quantization_lattice}
+\end{equation*}
+To estimate $\left\langle T \right\rangle$ we can use the energy density of the crystal (Ehrenfest theorem allows us to use classical expression for QM expectation value).
+Given an infinitesimal volume $dV$ at position $\ve r$ whose displacement from equilibrium position is given by \ref{eq:continuous_displacement} its kinetic energy is
+$$d\left\langle T \right\rangle = \frac{1}{2}\rho(\ve r)\dot u^2(t) \, dV = \frac{1}{2}u_0^2\omega^2\cos^2(kx)\sin^2(\omega t) \, dV$$
+Hence the kinetic energy of the crystal is 
+\begin{equation}
+    \left\langle T \right\rangle = \frac{1}{2}\rho(\ve r)\dot u^2(t) \, dV = \frac{1}{2}u_0^2\omega^2\sin^2(\omega t) \int_0^{N_z a_z}\int_0^{N_y a_y}\int_0^{N_x a_x}\rho(\ve r)\cos^2(kx) \, dxdydz
+    \label{eq:lattice_kinetic}
+\end{equation}
+Now, supposing that $N_x a_x = N_y a_y = N_z a_z$ and noting that 
+\begin{equation*}
+    \int_0^{N a} \cos^2(kx) \, dx = \int_0^{N k a} \cos^2t) \, dt = \frac{1}{2}
+\end{equation*}
+because $Nka=\pi$, expression \ref{eq:lattice_kinetic} becomes
+\begin{equation*}
+    \left\langle T \right\rangle = \frac{1}{4} Mu_0^2\omega^2\sin^2(\omega t)
+\end{equation*}
+and averaging over time 
+\begin{equation}
+    \left\langle T \right\rangle = \frac{1}{8} Mu_0^2\omega^2
+\end{equation}
+and inserting back into \ref{eq:energy_quantization_lattice}, rearrangin terms
+\begin{equation*}
+    u_0^2 = 4\left(n+\frac{1}{2}\right) \, \frac{\hbar}{M\omega}
+\end{equation*}
+For each value of $n$ we say that the wave is oscillating with one precise mode of oscillation: for some misterious reasons one can associate 
+to an oscillating wave with energy $E_n = \left(n+1/2\right)\hbar \omega$ $n$ quanta (particles) called phonons.
+\subsection*{Density of states}
+The total energy of the system can be written as
+\begin{equation}
+    U = \sum_{p}\sum_{k} \left\langle n_{k,p} \right\rangle \hbar \omega_p
+    \label{eq:lattice_energy_phonons}
+\end{equation}
+where $\left\langle n_{k,p} \right\rangle$ is the average mumber of phonons per mode of polarization $p$ and wavevector $k$. In particular this last factor
+is given by the Planck distribution (canonical ensemble) and it is 
+$$\left\langle n \right\rangle = \frac{1}{\exp(\beta\hbar\omega) - 1}$$
+which allows us to rewrite \ref{eq:lattice_energy_phonons} as 
+\begin{equation*}
+    \sum_p \sum_k \frac{\hbar \omega_{k,p}}{exp(\hbar\omega_{k,p}/T) - 1} = \sum_p \int d\omega \ D_p(\omega) \, \frac{\hbar \omega_{k,p}}{exp(\hbar\omega_{k,p}/T) - 1}
+\end{equation*}
+for a suitable choice of the function $D_p(\omega)$ which we call \emph{density of states}. \\
+The interesting point is how to compute this function (see exercise 2).
+\subsection*{Exercise 1}
+\subsubsection*{(a)}
+Let us consider a chain of $N$ atom \dots bla bla bla \dots
