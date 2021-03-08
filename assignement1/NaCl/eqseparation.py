@@ -36,10 +36,37 @@ a = []
 for n in Nparticles:
     new_a = xfact*NewtonRaphson(f, fdot, n, x=1e-10/xfact) # solve and reconvert to normal units
     a.append(new_a/1e-10)
-    print("N atoms:", n, "Lattice constant:", new_a, "angstrom")
+    print("N atoms:", n, "Lattice constant:", new_a, "m")
 
-plt.plot(Nparticles, a, '.-', color='cornflowerblue', markerfacecolor='darkorange', markeredgecolor='black', markersize=10, linewidth=2.2)
+final_a = xfact*NewtonRaphson(f, fdot, 10000, x=1e-10/xfact)/1e-10
+
+plt.plot(Nparticles, np.full(len(Nparticles), final_a), 'black', linewidth=2.2, label='Ideal')
+plt.plot(Nparticles, a, '.-', color='cornflowerblue', markerfacecolor='gray', markeredgecolor='black', markersize=6, linewidth=2.2, label='Model')
 plt.grid()
 plt.xlabel('Number of atoms', fontsize=16)
-plt.ylabel(r'Lattice constant [$\AA$]', fontsize=16)
+plt.ylabel(r'Equilibrium separation [$\AA$]', fontsize=16)
+plt.legend()
+plt.show()
+
+final_a = final_a / xfact * 1e-10
+
+U = []
+Un = [0]
+for n in Nparticles:
+    U.append(-n*alpha(n)/final_a*(1-rho/final_a)*Efact/eV_to_Joule)
+    if n > 0:
+        Un.append(U[-1]/n)
+
+plt.plot(Nparticles, U, '-', color='red', linewidth=2.2)
+plt.grid()
+plt.xlabel('Number of atoms', fontsize=16)
+plt.ylabel(r'Crystal energy [eV]', fontsize=16)
+plt.show()
+
+Uideal = -alpha(10000)/final_a*(1-rho/final_a)*Efact/eV_to_Joule
+plt.plot(Nparticles, np.full(len(Nparticles), Uideal), linewidth=2.2, color='black')
+plt.plot(Nparticles, Un, color='limegreen', alpha=0.6, markersize=10, linewidth=2.2)
+plt.grid()
+plt.xlabel('Number of atoms', fontsize=16)
+plt.ylabel(r'Energy per atom [eV]', fontsize=16)
 plt.show()
