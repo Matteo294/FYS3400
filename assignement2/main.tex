@@ -1,0 +1,131 @@
+\documentclass{article}
+\usepackage{packages}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usetikzlibrary{shapes.geometric}
+
+\begin{document}
+
+\section{Electrons I (FEG)}
+
+\subsubsection*{(a)}
+For a system at temperature $T$ the free energy is given by $G(p, T) = E + pV - TS$ and for $T=0$ this reduces to
+\begin{equation}
+    G(p, T) = E + pV
+\end{equation}
+where $E$ is the energy of the system, $p$ is the pressure and $V$ the volume. \\
+The energy of a system of fermions can be computed as
+\begin{equation}
+    E(T) = \int_{E_{min}}^{E_{max}} d\epsilon \ DOS(\epsilon) \ f_{FD}(\epsilon, T) \ \epsilon 
+\end{equation}
+where $f_{FD}(\epsilon)$ is the Fermi-Dirac distribution 
+\begin{equation*}
+    f_{FD}(\epsilon) = \frac{1}{e^{(\epsilon_i - \mu)/k_B T} + 1}
+\end{equation*}
+and indicates the average number of fermions in a single-particle state. \\
+In the limit of zero temperature one gets
+\begin{equation}
+    \lim_{T \to 0} E(T) = \int_{E_{min}}^{E_{max}} d\epsilon \ \lim_{T \to 0} \ DOS(\epsilon) \ f_{FD}(\epsilon, T) \ \epsilon
+    \label{eq:energy_FEFG}
+\end{equation}
+The 3D density of state function 
+\begin{equation}
+    DOS(\epsilon) = \frac{V}{2\pi^2} \ \left(\frac{2m}{\hbar^2}\right)^{3/2} \ \epsilon^{1/2}
+\end{equation}
+does not depend on temperature, while the Fermi-Dirac distribution function in the limit $T \to 0$ reduces to 
+\begin{equation}
+    \lim_{T \to 0} f_{FD}(\epsilon) = 
+    \begin{cases}
+        1 \qquad \text{if } \epsilon < \mu \\
+        \frac{1}{2} \qquad \text{if } \epsilon = \mu \\ 
+        0 \qquad \text{if } \epsilon > \mu
+    \end{cases}
+\end{equation}
+and \ref{eq:energy_FEFG} reduces to 
+\begin{equation*}
+    E \equiv E(T=0) = \frac{V}{2\pi^2} \ \left(\frac{2m}{\hbar^2}\right)^{3/2} \int_{E_{min}}^{E_{max}} \epsilon^{3/2} \, d\epsilon
+\end{equation*}
+In the last integral the extrema are $E_{min} = 0$ and $E_{max} = E_f$, that is the Fermi energy which is the energy of 
+the last occupied state. Hence
+\begin{equation}
+    E = \frac{V}{5\pi^2} \ \left(\frac{2m}{\hbar^2}\right)^{3/2} \, \epsilon_f^{5/2}
+    \label{eq:energy_energyfermi}
+\end{equation}
+and using the relation 
+\begin{equation*}
+    \epsilon_f = \frac{\hbar^2}{2m} \left(\frac{3\pi^2N}{V}\right)^{1/3}
+\end{equation*}
+one obtains
+\begin{equation*}
+    E = \frac{V}{5\pi^2} \ \left(\frac{2m}{\hbar^2}\right)^{3/2} \, \epsilon_f^{5/2}
+\end{equation*}
+
+The pressure can then be calculated by the Maxwell relation 
+$$p = -\frac{\partial E}{\partial V} = \frac{2}{3} \ \frac{1}{5\pi^2 V^{2/3}} \ \frac{\hbar^2}{2m} (3\pi^2N)^{5/3} = \frac{2}{3}\frac{E}{V}$$
+so that 
+$$G = E + pV = \frac{5}{3} E = \frac{2}{3} \frac{V}{5\pi^2} \ \left(\frac{2m}{\hbar^2}\right)^{3/2} \ \epsilon^{5/2}$$
+which can be rearranged as
+$$G = N \epsilon_f$$
+Equating this result to the formula given in the text of the exercise $G = N\mu$ one concludes that at temperature $T=0$ 
+\begin{equation}
+    \epsilon_f = \mu
+\end{equation}
+
+\subsubsection*{(b)}
+\begin{figure}
+    \centering 
+    \includegraphics[scale=0.5]{scripts/f_fd_mu.png}
+    \caption{}
+    \label{fig:fFD_mu}
+\end{figure}
+
+\subsubsection*{(c)}
+The number of orbitals whose energy is less than or equal to $\epsilon$ is given by 
+\begin{equation}
+    N = \frac{V}{2\pi^2} \left(\frac{2m\epsilon}{\hbar^2}\right)^{3/2}
+    \label{eq:N_orbitals}
+\end{equation}
+At $T=0$ all the electrons lie in the lowest-energy orbitals and the Fermi energy $\epsilon_f$
+corresponds to the energy of the last filled orbital. Hence in this particular case equation \ref{eq:N_orbitals}
+gives exactly the number of electrons divided by 2 (there are 2 electrons for each orbital). By indicating with $n$ the number of electrons,
+one has that 
+\begin{equation*}
+    n = \frac{V}{3\pi^2} \left(\frac{2m\epsilon_f}{\hbar^2}\right)^{3/2}
+\end{equation*}
+but on the other side
+\begin{equation*}
+    n = 
+\end{equation*}
+
+\subsubsection*{(d)}
+
+\subsubsection*{(e)}
+The energy of the system can be computed as 
+\begin{equation*}
+    E = \int_0^{+\infty} DOS(\epsilon) \, f_{FD}(\epsilon, T) \, \epsilon \, d\epsilon
+\end{equation*}
+The electrons' heat capacity contribution is
+\begin{equation*}
+    C = \frac{dE}{dT} = \int_0^{+\infty} DOS(\epsilon) \, \frac{\partial f_{FD}(\epsilon, T)}{\partial T} \, \epsilon \, d\epsilon
+\end{equation*}
+Since the number of electrons is independent of the temperature the last expression is equivalent to 
+\begin{equation*}
+    C = \frac{dE}{dT} - \epsilon_f\frac{dN}{dT} = \int_0^{+\infty} DOS(\epsilon) \, \frac{\partial f_{FD}(\epsilon, T)}{\partial T} \, (\epsilon -\epsilon_f) \, d\epsilon
+\end{equation*}
+Let us now consider the quantum limit $k_BT \ll \epsilon_F$: it can be easilly seen from figure (REFFF) that $\frac{df_{FD}}{d\epsilon}$ is significantly different from zero only 
+in a small region of width $2k_BT$ centered in $\epsilon=\epsilon_F$. Hence
+\begin{equation*}
+    C \approx DOS(\epsilon_f) \int_0^{+\infty} \frac{\partial f_{FD}(\epsilon, T)}{\partial T} \, (\epsilon - \epsilon_F) \, d\epsilon = 
+    DOS(\epsilon_F) k_B^2T \int_{-\epsilon_F/k_BT}^{+\infty} \frac{e^x}{(e^x + 1)^2} \, dx 
+\end{equation*}
+where I made the change of variable $x=(\epsilon - \epsilon_F)/k_BT$ and I used the fact that 
+\begin{equation*}
+    \frac{\partial f_{FD}(\epsilon, T)}{\partial T} = \frac{\epsilon - \epsilon_F}{k_BT^2} \frac{exp((\epsilon - \epsilon_F)/k_BT)}{[exp((\epsilon - \epsilon_F)/k_BT) + 1]^2}
+\end{equation*}
+that is I used the approximation $\mu \approx \epsilon_F$ (valid for the low temperature range).
+Since we assumed $k_BT \ll \epsilon_F$ the lower extrema can be approximated to $-\infty$. The integral is now a known integral and the value is $\pi^2/3$. Using the fact that 
+$DOS(\epsilon_F) = \frac{3N}{2\epsilon_F}$ the estimated specific heat is 
+\begin{equation*}
+    C \approx \frac{\pi^2}{2} N k_B^2 \frac{T}{E_F} = \frac{\pi^2}{2} N k_B \frac{T}{T_F}
+\end{equation*}
+\end{document}
