@@ -30,14 +30,22 @@ def eq(mu, T):
 # Solver
 T_vals = np.linspace(0.01, 10, 100) # from T=0.01Tf to T=10Tf
 mu_vals = []
-
+T_vals_zoom = np.linspace(0.01, 0.09, 100)
+mu_vals_zoom = []
 for T in T_vals:
     mu_vals.append(fsolve(eq, x0=1, args=(T)))
+for T in T_vals_zoom:
+    mu_vals_zoom.append(fsolve(eq, x0=1, args=(T)))
 
 # Plot of mu(T)
-plt.plot(T_vals, mu_vals)
-plt.xlabel('T')
-plt.ylabel('$\mu(T)$')
+plt.plot(T_vals, mu_vals, linewidth=2.0, color='black')
+plt.xlabel(r'$T/T_F$', fontsize=18)
+plt.ylabel('$\mu(T)$', fontsize=18)
+plt.grid()
+# Zoom in
+fig = plt.figure(1)
+ax_new = fig.add_axes([0.6, 0.6, 0.2, 0.2])
+plt.plot(T_vals_zoom, mu_vals_zoom, linewidth=1.6, color='black')
 plt.show()
 
 
@@ -68,5 +76,21 @@ for i in range(len(mu_fFD)):
 plt.xlabel(r'$\epsilon/\epsilon_f$', fontsize=18)
 plt.ylabel(r'$f_{FD}(\epsilon)$', fontsize=18)
 plt.legend(fontsize=12)
+plt.show()
+#-----------------------------------------
+
+# Plot of fFD with mu(T) only
+#-------------------------------------------
+# mu vals for the Fermi-Dirac distribution study
+mu_fFD = []
+for T in T_fFD:
+    mu_fFD.append(fsolve(eq, x0=1, args=(T)))
+
+for i in range(len(mu_fFD)):
+    plt.plot(eps_vals, fFD(eps_vals, mu_fFD[i], T_fFD[i]), color=plot_colors[i], label=r'T=%.2f $T_F \quad \mu=\mu(T)$'%(T_fFD[i]))
+plt.xlabel(r'$\epsilon/\epsilon_f$', fontsize=18)
+plt.ylabel(r'$f_{FD}(\epsilon)$', fontsize=18)
+plt.legend(fontsize=12)
+plt.grid()
 plt.show()
 #-----------------------------------------
