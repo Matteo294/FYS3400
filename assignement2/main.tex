@@ -216,4 +216,83 @@ The last equation has solution only if $|cos(ka) + \frac{V_0}{2ka} \sin(ka)| < 1
 For $|cos(ka) + \frac{V_0}{2ka} \sin(ka)| > 1$ there are no solutions: this means that therethose $k-$vectors are admitted by the system, hence those energies are not admitted.
 
 
+\section*{Exercise 3}
+
+\subsubsection*{(a)}
+One possible way describe a disordered glass is by using a two-level model. According to this model, in a disordered material, there are single atoms or group of atoms that can lie in one of two adiacent minima of 
+a potential and can quantum tunnel between the states. In this sense each of these atoms (or aggregate of atoms) can be seen as two-level system. The energy of the whole system is then the sum of the energies of each two-level system (TLS)
+each of which can assume only two values. \\
+Let us label each minimum with $1$ and $2$ with energie $E_1=0$ and $E_2=\epsilon$. \\
+Each TLS can be described as a member of a canonical ensemble whose partition function is $Z = e^{-\beta E_1} + e^{-\beta E_2} = 1 + e^{-\beta \epsilon}$. According to this, the probabilities for each state are
+\begin{equation*}
+    p_1 \equiv (E_1) = \frac{e^{-\beta E_1}}{Z} = \frac{1}{1 + e^{-\beta \epsilon}} \qquad p_2 \equiv p(E_2) = \frac{e^{-\beta E_1}}{Z} = \frac{e^{-\beta \epsilon}}{1 + e^{-\beta \epsilon}}
+\end{equation*}
+The average energy for each TLS is now
+\begin{equation*}
+    E_{TLS} \equiv \langle E_{TLS} \rangle = p_1 E_1 + p_2 E_2 = \frac{\epsilon e^{-\beta\epsilon}}{1 + e^{-\beta\epsilon}} = \frac{\epsilon}{1 + e^{\beta\epsilon}}
+\end{equation*}
+And each TLS has an average heat capacity of
+\begin{equation*}
+    c_v = \frac{\partial E}{\partial T} = k_B \beta^2 \epsilon^2 \frac{e^{\beta \epsilon}}{e^{\beta \epsilon} + 1}
+\end{equation*}
+Now, in the material, there might be more that one TLS with the same energy: let us call this number $DOS(\epsilon)$ (density of states). According to this definition th total energy of the system is given by 
+\begin{equation*}
+    E = \int_0^{+\infty} DOS(\epsilon) \ E_{TLS}(\epsilon) \ d\epsilon = k_B \int_0^{+\infty} DOS(\epsilon) \ \frac{\epsilon^2\beta^2 e^{\beta\epsilon}}{(e^{\beta \epsilon}+1)^2} \ d\epsilon
+\end{equation*}
+And the heat capacity of the material is 
+\begin{equation}
+    C = \frac{\partial E}{\partial T} = \int_0^{+\infty} DOS(\epsilon) \ \frac{\partial E_{TLS}(\epsilon)}{\partial T} \ d\epsilon
+    \label{eq:heat_capacity}
+\end{equation}
+The exercise provides a model with a time dependent density of states that is
+\begin{equation}
+    DOS(\epsilon, t) = \log\left(\frac{t}{\tau(\epsilon)}\right)
+    \label{eq:DOS_t_dep}
+\end{equation}
+where
+\begin{equation}
+    \frac{1}{\tau(\epsilon)} = K \, \epsilon^3 \coth\left(\frac{\beta\epsilon}{2}\right)
+    \label{eq:tau_eps}
+\end{equation}
+By inserting \ref{eq:tau_eps} into \ref{eq:heat_capacity} one obtains
+\begin{equation}
+    C = k_B \ \int_0^{+\infty} \log\left(\frac{t}{\tau(\epsilon)}\right) \ \frac{\beta^2\epsilon^2 e^{\beta\epsilon}}{(e^{\beta \epsilon} + 1)^2}
+    \label{eq:big_integral}
+\end{equation}
+The integral cannot be solved analytically but it can be approximated as explained in the following lines. \\
+The function $E_{TLS}(\epsilon) = \beta^3\epsilon^3e^{\beta\epsilon}/(e^{(\beta\epsilon + 1)^2})$ is peaked on the point
+$\epsilon \approx 2.5/\beta = 2.5 \, k_B T$ and the peak becomes more narrow as the temperature decreases (or $\beta$ increases). This means that the integrand is significantly far from zero only 
+in a narrow region around $\epsilon_0 \approx 2.4 k_B T$. Let us call $\epsilon_{min}$ and $\epsilon_{max}$ the two extrema of the peak area (see figure \ref{fig:peak} on the left). In this region the other term in the integral $DOS(\epsilon) = \log(t/\tau(\epsilon))$
+is practically constant as can be seen in figure \ref{fig:peak} (on the right). 
+\begin{figure}
+\centering
+\begin{minipage}{0.4\textwidth}
+    \includegraphics[scale=0.45]{scripts/cv_eps.png}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+    \includegraphics[scale=0.45]{scripts/DOS_eps.png}
+\end{minipage}
+\caption{The energy of the system is the integral of the product of the plotted functions. Since the left one goes rapidly to zero
+outside the grey area, the integral can be well approximated considering the contributions of the grey area only. In this range the other function (on the right) varies
+slowly and can be indeed approximated by a constant value.}
+\label{fig:peak}
+\end{figure}
+This means that one can approximate it with the value in the peak point, that is
+\begin{equation*}
+    DOS(\epsilon, t) = \log(t/\tau(\epsilon)) \approx \log(t/\tau(\epsilon_0)) \qquad \text{for} \quad \epsilon \in [\epsilon_{min}, \epsilon_{max}]
+\end{equation*}
+Equation \ref{eq:big_integral} becomes then 
+\begin{equation}
+    C \approx k_B \log(t/\tau(\epsilon_0)) \ \int_0^{+\infty} \beta^2\epsilon^2 \frac{e^{\beta\epsilon}}{(e^{\beta\epsilon}+1)^2} \, d\epsilon =
+    A \log(t/\tau(\epsilon_0))
+\end{equation}
+where 
+\begin{equation*}
+    A = k_B \int_0^{+\infty} \beta^2\epsilon^2 \frac{e^{\beta\epsilon}}{(e^{\beta\epsilon}+1)^2} \, d\epsilon
+\end{equation*}
+
+\subsubsection*{(b)}
+
+
 \end{document}
