@@ -168,4 +168,52 @@ $DOS(\epsilon_F) = \frac{3N}{2\epsilon_F}$ the estimated specific heat is
 \begin{equation*}
     C \approx \frac{\pi^2}{2} N k_B^2 \frac{T}{E_F} = \frac{\pi^2}{2} N k_B \frac{T}{T_F}
 \end{equation*}
+
+\section{Exercise II}
+Let us first consider a simple delta potential $V(x) = V_0 \, \delta(x)$ and the Schroedinger equation 
+\begin{equation*}
+    -\frac{\hbar^2}{2m}\psi''(x) + V(x) \psi(x) = E \psi(x)
+\end{equation*}
+Let us integrate both members between $-\epsilon$ and $+\epsilon$ and let $\epsilon \to 0$, we obtain (in approximation for small $\epsilon$)
+\begin{equation*}
+    \lim_{\epsilon \to 0} -\frac{\hbar^2}{2m} \left(\psi'(\epsilon) - \psi'(-\epsilon)\right) + V_0\int_{-\epsilon}^{+\epsilon} \delta(x) \psi(x) = \lim_{\epsilon \to 0} 2\epsilon E \psi(0)
+\end{equation*} 
+or 
+\begin{equation*}
+    \psi'(0^+) - \psi'(0^-) = \frac{2mV_0}{\hbar^2}\psi(0)
+\end{equation*}
+This equation can be read as a condition on the discontinuity of the derivative of the function $\psi(x)$ across the $\delta$. \\
+Now let us return to the Dirac delta comb potential $V(x) = \sum_{n=-\infty}^{+\infty} \delta(x+na)$. The potential is clearly periodic with period $a$. Hence
+one can make use of the Bloch's theorem which states that the wavefunctions satisfy the conditions
+\begin{equation*}
+    \psi(x) = e^{iQx} u(x)
+\end{equation*}
+where $Q=\frac{2\pi}{na}$ and $u(x)$ satisfies in turn
+\begin{equation*}
+    u(x+na) = u(x)
+\end{equation*}
+One can now restrict the domain to $0<x<a$ and solve the problem in this interval, imposing then the Bloch condition to obtain the solution 
+to the complete theorem. For $0<x<a$ the solution is a plane wave
+\begin{equation*}
+    \psi(x) = Ae^{ikx} + Be^{-ikx}
+\end{equation*}
+By using the Bloch's theorem one can relate the solution for $a<x<2a$
+\begin{equation*}
+    \frac{\psi(x)}{\psi(x+a)} = \frac{u(x)e^{iQx}}{u(x+a)e^{iQx}e^{iqa}} = e^{-iQa}
+\end{equation*}
+So that 
+$\psi(x+a) = e^{iQa} \, \psi(x)$
+Let us now impose the continuity of $\psi(x)$ and the discontinuity of $\psi'(x)$ on the edge between the two zones at $x=a$
+$$\begin{cases}
+    eq1
+\end{cases}$$
+which can be reduced
+\begin{equation*}
+    \cos(Qa) = \cos(ka) + \frac{V_0}{2ka} \sin(ka)
+\end{equation*}
+The admitted values of $k$ for the system are those that satisfy the above equation. The corresponding energies are then $E_k = \frac{\hbar^2k^2}{2m}$.
+The last equation has solution only if $|cos(ka) + \frac{V_0}{2ka} \sin(ka)| < 1$. 
+For $|cos(ka) + \frac{V_0}{2ka} \sin(ka)| > 1$ there are no solutions: this means that therethose $k-$vectors are admitted by the system, hence those energies are not admitted.
+
+
 \end{document}
