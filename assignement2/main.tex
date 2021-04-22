@@ -174,7 +174,7 @@ Let us first consider a simple delta potential $V(x) = V_0 \, \delta(x)$ and the
 \begin{equation*}
     -\frac{\hbar^2}{2m}\psi''(x) + V(x) \psi(x) = E \psi(x)
 \end{equation*}
-Let us integrate both members between $-\epsilon$ and $+\epsilon$ and let $\epsilon \to 0$, we obtain (in approximation for small $\epsilon$)
+Let us integrate both members between $-\epsilon$ and $+\epsilon$ and let $\epsilon \to 0$, we obtain 
 \begin{equation*}
     \lim_{\epsilon \to 0} -\frac{\hbar^2}{2m} \left(\psi'(\epsilon) - \psi'(-\epsilon)\right) + V_0\int_{-\epsilon}^{+\epsilon} \delta(x) \psi(x) = \lim_{\epsilon \to 0} 2\epsilon E \psi(0)
 \end{equation*} 
@@ -193,11 +193,11 @@ where $Q=\frac{2\pi}{na}$ and $u(x)$ satisfies in turn
     u(x+na) = u(x)
 \end{equation*}
 One can now restrict the domain to $0<x<a$ and solve the problem in this interval, imposing then the Bloch condition to obtain the solution 
-to the complete theorem. For $0<x<a$ the solution is a plane wave
+to the complete theorem. For $0<x<a$ the solution is a combination of plane waves
 \begin{equation*}
     \psi(x) = Ae^{ikx} + Be^{-ikx}
 \end{equation*}
-By using the Bloch's theorem one can relate the solution for $a<x<2a$
+By using the Bloch's theorem one can relate the solution for $a<x<2a$ to the one for $0<x<a$
 \begin{equation*}
     \frac{\psi(x)}{\psi(x+a)} = \frac{u(x)e^{iQx}}{u(x+a)e^{iQx}e^{iqa}} = e^{-iQa}
 \end{equation*}
@@ -219,23 +219,22 @@ For $|cos(ka) + \frac{V_0}{2ka} \sin(ka)| > 1$ there are no solutions: this mean
 \section*{Exercise 3}
 
 \subsubsection*{(a)}
-One possible way describe a disordered glass is by using a two-level model. According to this model, in a disordered material, there are single atoms or group of atoms that can lie in one of two adiacent minima of 
-a potential and can quantum tunnel between the states. In this sense each of these atoms (or aggregate of atoms) can be seen as two-level system. The energy of the whole system is then the sum of the energies of each two-level system (TLS)
-each of which can assume only two values. \\
-Let us label each minimum with $1$ and $2$ with energie $E_1=0$ and $E_2=\epsilon$. \\
-Each TLS can be described as a member of a canonical ensemble whose partition function is $Z = e^{-\beta E_1} + e^{-\beta E_2} = 1 + e^{-\beta \epsilon}$. According to this, the probabilities for each state are
+One possible way describe a disordered material is by mean of a two-level system. According to this model there are single atoms or group of atoms in the material that can lie in one of two adiacent minima of 
+a potential and can quantum tunnel between the states. In this sense each of these atoms (or aggregate of atoms) can be seen as a two-level system. The energy of the whole system is then the sum of the energies of each two-level system (TLS). \\
+Let us label the minima $1$ and $2$ with related energies $E_1=0$ and $E_2=\epsilon$. \\
+Each TLS can be described as a member of a canonical ensemble whose partition function is $Z = e^{-\beta E_1} + e^{-\beta E_2} = 1 + e^{-\beta \epsilon}$ where $\beta = 1/k_BT$. According to this, the probabilities for each TLS to be in one of the two levels are
 \begin{equation*}
-    p_1 \equiv (E_1) = \frac{e^{-\beta E_1}}{Z} = \frac{1}{1 + e^{-\beta \epsilon}} \qquad p_2 \equiv p(E_2) = \frac{e^{-\beta E_1}}{Z} = \frac{e^{-\beta \epsilon}}{1 + e^{-\beta \epsilon}}
+    p_1 \equiv p(E_1) = \frac{e^{-\beta E_1}}{Z} = \frac{1}{1 + e^{-\beta \epsilon}} \qquad p_2 \equiv p(E_2) = \frac{e^{-\beta E_1}}{Z} = \frac{e^{-\beta \epsilon}}{1 + e^{-\beta \epsilon}}
 \end{equation*}
 The average energy for each TLS is now
 \begin{equation*}
-    E_{TLS} \equiv \langle E_{TLS} \rangle = p_1 E_1 + p_2 E_2 = \frac{\epsilon e^{-\beta\epsilon}}{1 + e^{-\beta\epsilon}} = \frac{\epsilon}{1 + e^{\beta\epsilon}}
+    E_{TLS} \equiv \langle E_{TLS}(\epsilon) \rangle = p_1 E_1 + p_2 E_2 = \frac{\epsilon e^{-\beta\epsilon}}{1 + e^{-\beta\epsilon}} = \frac{\epsilon}{1 + e^{\beta\epsilon}}
 \end{equation*}
 And each TLS has an average heat capacity of
 \begin{equation*}
-    c_v = \frac{\partial E}{\partial T} = k_B \beta^2 \epsilon^2 \frac{e^{\beta \epsilon}}{e^{\beta \epsilon} + 1}
+    c_v = \frac{\partial E}{\partial T} = k_B \beta^2 \epsilon^2 \frac{e^{\beta \epsilon}}{(e^{\beta \epsilon} + 1)^2}
 \end{equation*}
-Now, in the material, there might be more that one TLS with the same energy: let us call this number $DOS(\epsilon)$ (density of states). According to this definition th total energy of the system is given by 
+Now, in the material, there might be more that one TLS with the same energy: let us call $DOS(\epsilon)$  the number of states with energy $\epsilon$ (density of states). According to this definition the total energy of the system is given by 
 \begin{equation*}
     E = \int_0^{+\infty} DOS(\epsilon) \ E_{TLS}(\epsilon) \ d\epsilon = k_B \int_0^{+\infty} DOS(\epsilon) \ \frac{\epsilon^2\beta^2 e^{\beta\epsilon}}{(e^{\beta \epsilon}+1)^2} \ d\epsilon
 \end{equation*}
@@ -246,7 +245,7 @@ And the heat capacity of the material is
 \end{equation}
 The exercise provides a model with a time dependent density of states that is
 \begin{equation}
-    DOS(\epsilon, t) = \log\left(\frac{t}{\tau(\epsilon)}\right)
+    DOS(\epsilon, t) = \frac{P_0}{2}\log\left(\frac{4t}{\tau(\epsilon)}\right)
     \label{eq:DOS_t_dep}
 \end{equation}
 where
@@ -256,15 +255,15 @@ where
 \end{equation}
 By inserting \ref{eq:tau_eps} into \ref{eq:heat_capacity} one obtains
 \begin{equation}
-    C = k_B \ \int_0^{+\infty} \log\left(\frac{t}{\tau(\epsilon)}\right) \ \frac{\beta^2\epsilon^2 e^{\beta\epsilon}}{(e^{\beta \epsilon} + 1)^2}
+    C = \frac{k_BP_0}{2} \ \int_0^{+\infty} \log\left(\frac{4t}{\tau(\epsilon)}\right) \ \frac{\beta^2\epsilon^2 e^{\beta\epsilon}}{(e^{\beta \epsilon} + 1)^2}
     \label{eq:big_integral}
 \end{equation}
 The integral cannot be solved analytically but it can be approximated as explained in the following lines. \\
-The function $E_{TLS}(\epsilon) = \beta^3\epsilon^3e^{\beta\epsilon}/(e^{(\beta\epsilon + 1)^2})$ is peaked on the point
+The function $E_{TLS}(\epsilon) = \beta^2\epsilon^2e^{\beta\epsilon}/(e^{\beta\epsilon} + 1)^2$ is peaked at the point
 $\epsilon \approx 2.5/\beta = 2.5 \, k_B T$ and the peak becomes more narrow as the temperature decreases (or $\beta$ increases). This means that the integrand is significantly far from zero only 
-in a narrow region around $\epsilon_0 \approx 2.4 k_B T$. Let us call $\epsilon_{min}$ and $\epsilon_{max}$ the two extrema of the peak area (see figure \ref{fig:peak} on the left). In this region the other term in the integral $DOS(\epsilon) = \log(t/\tau(\epsilon))$
-is practically constant as can be seen in figure \ref{fig:peak} (on the right). 
-\begin{figure}
+in a narrow region around $\epsilon_0 \approx 2.5 k_B T$. Let us call $\epsilon_{min}$ and $\epsilon_{max}$ the two extrema of the peak area (see figure \ref{fig:peak} on the left). In this region the other term in the integral $DOS(\epsilon) = \log(4t/\tau(\epsilon))$
+is practically constant as can be seen in figure \ref{fig:peak} on the right. 
+\begin{figure}[htp]
 \centering
 \begin{minipage}{0.4\textwidth}
     \includegraphics[scale=0.45]{scripts/cv_eps.png}
@@ -278,21 +277,49 @@ outside the grey area, the integral can be well approximated considering the con
 slowly and can be indeed approximated by a constant value.}
 \label{fig:peak}
 \end{figure}
-This means that one can approximate it with the value in the peak point, that is
+This means that one can approximate it with the value in the $\epsilon_0$, that is
 \begin{equation*}
-    DOS(\epsilon, t) = \log(t/\tau(\epsilon)) \approx \log(t/\tau(\epsilon_0)) \qquad \text{for} \quad \epsilon \in [\epsilon_{min}, \epsilon_{max}]
+    DOS(\epsilon, t) = \log(4t/\tau(\epsilon)) \approx \log(4t/\tau(\epsilon_0)) \qquad \text{for} \quad \epsilon \in [\epsilon_{min}, \epsilon_{max}]
 \end{equation*}
 Equation \ref{eq:big_integral} becomes then 
 \begin{equation}
-    C \approx k_B \log(t/\tau(\epsilon_0)) \ \int_0^{+\infty} \beta^2\epsilon^2 \frac{e^{\beta\epsilon}}{(e^{\beta\epsilon}+1)^2} \, d\epsilon =
-    A \log(t/\tau(\epsilon_0))
+    C \approx \frac{k_BP_0}{2} \log(4t/\tau(\epsilon_0)) \ \int_0^{+\infty} \beta^2\epsilon^2 \frac{e^{\beta\epsilon}}{(e^{\beta\epsilon}+1)^2} \, d\epsilon =
+    A \log(4t/\tau(\epsilon_0))
 \end{equation}
 where 
 \begin{equation*}
-    A = k_B \int_0^{+\infty} \beta^2\epsilon^2 \frac{e^{\beta\epsilon}}{(e^{\beta\epsilon}+1)^2} \, d\epsilon
+    A = \frac{k_BP_0}{2} \int_0^{+\infty} \beta^2\epsilon^2 \frac{e^{\beta\epsilon}}{(e^{\beta\epsilon}+1)^2} \, d\epsilon
 \end{equation*}
 
 \subsubsection*{(b)}
-
-
+Let us consider a system at temperature $T_1$ and a reservoir at temperature $T_0$. When the system is put into contact
+with the reservoir the temperature of the system decreases or increases until it reaches $T_0$. One can calculate the energy difference between the two states: this can be done in two ways:
+\begin{enumerate}
+    \item By integrating the specific heat between the two temperatures
+    \item By using the definition of average energy in a canonical ensemble
+\end{enumerate}
+I hereby follow the second path but it is competely equivalent to the first one. \\
+One now has that
+\begin{equation*}
+    \Delta E = E(T_1) - E(T_0)
+\end{equation*}
+where 
+\begin{equation*}
+    E(T) = \int_0^{+\infty} DOS(\epsilon) \, E_{TLS}(\epsilon) \, d\epsilon = 
+    \frac{P_0}{2}\int_0^{+\infty} \log(4t/\tau(\epsilon)) \frac{\epsilon }{e^{\beta\epsilon}+1} \, d\epsilon
+\end{equation*}
+The difference of the energy between the two states is either released or absorbed during the process depending on the relative temperature. The corresponding power is simply the derivative of
+the energy with respect to time and it gives 
+\begin{gather*}
+    \dot q(t) = \frac{d \Delta E}{dt} = 
+    \frac{k_BP_0}{2} \int_0^{+\infty} \frac{\partial \log(4t/\tau(\epsilon))}{\partial t} \ \left(\frac{\epsilon}{e^{\beta_1\epsilon} + 1} - \frac{\epsilon}{e^{\beta_0\epsilon} + 1} \right)\, d\epsilon = \\
+    = \frac{k_BP_0}{2} \frac{1}{t} \int_0^{+\infty} \ \left(\frac{\epsilon}{e^{\beta_1\epsilon} + 1} - \frac{\epsilon}{e^{\beta_0\epsilon} + 1} \right) \, d\epsilon = \frac{B}{t} 
+\end{gather*}
+The constant $B$ can be computed by evaluating the integral. After a change of variable $x = \beta\epsilon$ one has that
+\begin{gather*}
+    \dot q(t) = \frac{P_0}{2\beta_1^2 \, t} \int_0^{+\infty} \frac{x}{e^x + 1} - \frac{P_0}{2\beta_0^2 \, t} \int_0^{+\infty} \frac{x}{e^x + 1} = \\
+    = \frac{P_0\pi^2}{24t} \left(\frac{1}{\beta_1^2} - \frac{1}{\beta_0^2}\right) = 
+    \frac{k_B^2P_0\pi^2}{24t} \left(T_1^2 - T_0^2\right) = \frac{B}{t}
+\end{gather*} 
+So that $B = \frac{k_B^2 P_0 \pi^2}{24} \, (T_1^2 - T_0^2)$
 \end{document}
