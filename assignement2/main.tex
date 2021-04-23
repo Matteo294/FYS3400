@@ -5,15 +5,20 @@
 \usetikzlibrary{shapes.geometric}
 
 \begin{document}
+\begin{center}
+    \centerline{\LARGE FYS3400 - Mandatory assignement II}
+    \vspace{10pt}
+    \centerline{\large\textbf{Candidate number}: 113}
+\end{center}
 
-\section{Electrons I (FEG)}
+\section{Electrons I (FEFG)}
 
 \subsubsection*{(a)}
 For a system at temperature $T$ the free energy is given by 
-\begin{equation*}
+\begin{equation}
     G(p, T) = E + pV - TS
     \label{eq:FreeEneergy}
-\end{equation*}
+\end{equation}
 where the pressure $p$, the volume $V$ and the temperature $T$ are connected through a state equation of the type $\phi(p, V, T) = 0$ that depends
 on the system. \\
 For $T=0$ equation \ref{eq:FreeEneergy} reduces to
@@ -58,20 +63,24 @@ the last occupied state. Hence
     E = \frac{V}{5\pi^2} \ \left(\frac{2m}{\hbar^2}\right)^{3/2} \, \epsilon_F^{5/2}
     \label{eq:energy_energyfermi}
 \end{equation}
-and using the relation 
+Remembering that
 \begin{equation*}
-    \epsilon_F = \frac{\hbar^2}{2m} \left(\frac{3\pi^2N}{V}\right)^{1/3}
+    \epsilon_F = \frac{\hbar^2}{2m} \left(\frac{3\pi^2N}{V}\right)^{2/3}
 \end{equation*}
-one obtains
+equation \ref{eq:energy_energyfermi} becomes
 \begin{equation*}
-    E = \frac{V}{5\pi^2} \ \left(\frac{2m}{\hbar^2}\right)^{3/2} \, \epsilon_F^{5/2}
+    E = \frac{V^{-2/3}}{5\pi^2} \frac{\hbar^2}{2m} \, (3\pi^2N)^{5/3}
 \end{equation*}
 The pressure can then be calculated by the Maxwell relation 
 $$p = -\frac{\partial E}{\partial V} = \frac{2}{3} \ \frac{1}{5\pi^2 V^{2/3}} \ \frac{\hbar^2}{2m} (3\pi^2N)^{5/3} = \frac{2}{3}\frac{E}{V}$$
 so that 
-$$G = E + pV = \frac{5}{3} E = \frac{2}{3} \frac{V}{5\pi^2} \ \left(\frac{2m}{\hbar^2}\right)^{3/2} \ \epsilon^{5/2}$$
+$$G = E + pV = \frac{5}{3} E = \frac{V}{3\pi^2} \ \left(\frac{2m}{\hbar^2}\right)^{3/2} \, \epsilon_F^{5/2}$$
 which can be rearranged as
 $$G = N \epsilon_F$$
+because 
+\begin{equation*}
+    N = \frac{V}{3\pi^2} \left(\frac{2m\epsilon_f}{\hbar^2}\right)^{3/2}
+\end{equation*}
 Equating this result to the formula given in the text of the exercise $G = N\mu$ one concludes that at temperature $T=0$ 
 \begin{equation}
     \epsilon_F = \mu
@@ -85,7 +94,7 @@ occurs at $\epsilon = \epsilon_F$, where the approximated function ($\mu = \epsi
     \centering 
     \includegraphics[scale=0.5]{scripts/f_fd_mu.png}
     \caption{Fermi-Dirac distribution for various temperature values. The continous lines correspond to 
-    the distribution drawn by keeping the chemical potential constant at $\mu=_{epsilon_F}$, while the dashed lines represent the true relations.}
+    the distribution drawn by keeping the chemical potential constant at $\mu=epsilon_F$, while the dashed lines represent the true relations.}
     \label{fig:fFD_mu}
 \end{figure}
 
@@ -104,35 +113,35 @@ one has that
     \label{eq:n_elect1}
 \end{equation}
 but on the other side
-\begin{equation*}
+\begin{equation}
     n = \int_0^{+\infty} \, 2DOS(\epsilon) \, f_{FD}(\epsilon) \, d\epsilon
     \label{eq:n_elect2}
-\end{equation*}
+\end{equation}
 One can now impose the equality between \ref{eq:n_elect1} and \ref{eq:n_elect2}: in particular expression \ref{eq:n_elect2} is a function of the chemical potential $\mu$ and the temperature $T$ and 
 the equation can be written as 
 \begin{equation*}
     N_0 = g(\mu, T)
 \end{equation*}
-where $N_0$ is given by \ref{eq:n_elect1} and $g(\mu, T)$. \\
+where $N_0$ is given by \ref{eq:n_elect1} and $g(\mu, T)$ is the result of the integral in \ref{eq:n_elect2}. \\
 The equation can be solved numerically using the following procedure:
 \begin{enumerate}
     \item Fix a value for the temperature $T_1$
-    \item The equation is now an equation in one variable $\mu$ an can be solved via traditional numerical methods to obtain a corresponding value $\mu_1$.
+    \item The equation is now an equation in one variable $\mu$ and can be solved via traditional numerical methods to obtain a corresponding value $\mu_1$.
     \item Store the values $(T_1, \mu_1)$
-    \item Select a value $T_1$ and repeat from point $1)$
+    \item Select a new value $T_2$ for the temperature and repeat from point $1)$
 \end{enumerate}
 In this way we obtain multiple couples $(T_i, \mu_i)$ that can be plotted to give a graphical representation of the function $\mu(T)$ (see figure \ref{fig:chemical_potential})
 \begin{figure}[hbtp]
     \centering 
     \includegraphics[scale=0.7]{scripts/mu_T.eps}
-    \caption{Chemical potential as a function of temperature. The small window on top right is a zoom on the low-temperature area. It shows that for low temperature
-    the chemical potential dependence on the temperature can be well approximated by a parabola of the type $\mu(T) = \mu(T=0) - \alpha T^2 = \epsilon_F - \alpha T^2$}
+    \caption{Chemical potential as a function of temperature. The small window on top right is a zoom on the low-temperature area. For low temperatures
+    the chemical potential dependence on the temperature can be well approximated by a parabola of the type $\mu(T) = \mu(T=0) - \alpha T^2 + o(T^2) = \epsilon_F - \alpha T^2 + o(T^2)$}
     \label{fig:chemical_potential}
 \end{figure}
 
 \subsubsection*{(d)}
-The curves are already reported in figure \ref{fig:fFD_mu} as dashed lines, but I report them here alone for clarity
-\begin{figure}
+The curves are already reported in figure \ref{fig:fFD_mu} as dashed lines, but I report them in figure \ref{fig:fFD_mu_T} alone for clarity
+\begin{figure}[htbpb]
     \centering
     \includegraphics[scale=0.5]{scripts/f_fd_mu_T.eps}
     \caption{Fermi-Dirac distribution for various value of temperature. The depence of the chemical $\mu$ on the temperature is taken into account.}
@@ -152,7 +161,11 @@ Since the number of electrons is independent of the temperature the last express
 \begin{equation*}
     C = \frac{dE}{dT} - \epsilon_F\frac{dN}{dT} = \int_0^{+\infty} DOS(\epsilon) \, \frac{\partial f_{FD}(\epsilon, T)}{\partial T} \, (\epsilon -\epsilon_F) \, d\epsilon
 \end{equation*}
-Let us now consider the quantum limit $k_BT \ll \epsilon_F$: it can be easilly seen from figure (REFFF) that $\frac{df_{FD}}{d\epsilon}$ is significantly different from zero only 
+since 
+\begin{equation*}
+    N =\int_0^{+\infty} DOS(\epsilon) \, f_{FD}(\epsilon, T) d\epsilon
+\end{equation*}
+Let us now consider the quantum limit $k_BT \ll \epsilon_F$: $\frac{df_{FD}}{d\epsilon}$ is significantly different from zero only 
 in a small region of width $2k_BT$ centered in $\epsilon=\epsilon_F$. Hence
 \begin{equation*}
     C \approx DOS(\epsilon_F) \int_0^{+\infty} \frac{\partial f_{FD}(\epsilon, T)}{\partial T} \, (\epsilon - \epsilon_F) \, d\epsilon = 
@@ -162,14 +175,17 @@ where I made the change of variable $x=(\epsilon - \epsilon_F)/k_BT$ and I used 
 \begin{equation*}
     \frac{\partial f_{FD}(\epsilon, T)}{\partial T} = \frac{\epsilon - \epsilon_F}{k_BT^2} \frac{exp((\epsilon - \epsilon_F)/k_BT)}{[exp((\epsilon - \epsilon_F)/k_BT) + 1]^2}
 \end{equation*}
-that is I used the approximation $\mu \approx \epsilon_F$ (valid for the low temperature range).
+and I used the approximation $\mu \approx \epsilon_F$ (valid for the low temperature range).
 Since we assumed $k_BT \ll \epsilon_F$ the lower extrema can be approximated to $-\infty$. The integral is now a known integral and the value is $\pi^2/3$. Using the fact that 
 $DOS(\epsilon_F) = \frac{3N}{2\epsilon_F}$ the estimated specific heat is 
 \begin{equation*}
-    C \approx \frac{\pi^2}{2} N k_B^2 \frac{T}{E_F} = \frac{\pi^2}{2} N k_B \frac{T}{T_F}
+    C \approx \frac{\pi^2}{2} N k_B \frac{T}{\epsilon_F} = \frac{\pi^2N}{2}\frac{T}{T_F}
 \end{equation*}
 
-\section{Exercise II}
+\newpage
+
+\section{Electrons II (FEFG)}
+
 Let us first consider a simple delta potential $V(x) = V_0 \, \delta(x)$ and the Schroedinger equation 
 \begin{equation*}
     -\frac{\hbar^2}{2m}\psi''(x) + V(x) \psi(x) = E \psi(x)
@@ -185,38 +201,78 @@ or
 This equation can be read as a condition on the discontinuity of the derivative of the function $\psi(x)$ across the $\delta$. \\
 Now let us return to the Dirac delta comb potential $V(x) = \sum_{n=-\infty}^{+\infty} \delta(x+na)$. The potential is clearly periodic with period $a$. Hence
 one can make use of the Bloch's theorem which states that the wavefunctions satisfy the conditions
-\begin{equation*}
+\begin{equation}
     \psi(x) = e^{iQx} u(x)
-\end{equation*}
-where $Q=\frac{2\pi}{na}$ and $u(x)$ satisfies in turn
-\begin{equation*}
+    \label{eq:bloch1}
+\end{equation}
+where $Q=\frac{2\pi n}{Na}$ and $u(x)$ satisfies in turn
+\begin{equation}
     u(x+na) = u(x)
-\end{equation*}
+    \label{eq:bloch2}
+\end{equation}
 One can now restrict the domain to $0<x<a$ and solve the problem in this interval, imposing then the Bloch condition to obtain the solution 
 to the complete theorem. For $0<x<a$ the solution is a combination of plane waves
 \begin{equation*}
-    \psi(x) = Ae^{ikx} + Be^{-ikx}
+    \psi_I(x) = Ae^{ikx} + Be^{-ikx}
 \end{equation*}
-By using the Bloch's theorem one can relate the solution for $a<x<2a$ to the one for $0<x<a$
+where $k = \sqrt{\frac{2mE}{\hbar^2}}$. \\
+By using the Bloch's theorem (using equations \ref{eq:bloch1} and \ref{eq:bloch2}) one can relate the solution for $a<x<2a$ to the one for $0<x<a$
 \begin{equation*}
-    \frac{\psi(x)}{\psi(x+a)} = \frac{u(x)e^{iQx}}{u(x+a)e^{iQx}e^{iqa}} = e^{-iQa}
+    \frac{\psi(x)}{\psi(x+a)} = \frac{u(x)e^{iQx}}{u(x+a)e^{iQx}e^{iQa}} = e^{-iQa}
 \end{equation*}
 So that 
-$\psi(x+a) = e^{iQa} \, \psi(x)$
+$\psi(x+a) = e^{iQa} \, \psi(x)$ 
+or equivalently 
+\begin{equation}
+    \psi_{II}(x) = e^{iQa} \, \psi(x-a) = e^{iQa} \left(Ae^{ik(x-a)} + Be^{-ik(x-a)}\right)
+\end{equation}
 Let us now impose the continuity of $\psi(x)$ and the discontinuity of $\psi'(x)$ on the edge between the two zones at $x=a$
 $$\begin{cases}
-    eq1
+    \psi_I(a^-) = \psi_{II}(a^+) \\
+    \psi_{II}(a^+) - \psi_{I}(a^-) = \frac{2mV_0}{\hbar^2} \ \psi(a)
+\end{cases}
+\qquad
+\begin{cases}
+    Ae^{ika} + Be^{-ika} = e^{iQa} (A+B) \\
+    ike^{iQa}(A-B) - ik(Ae^{ika} - Be^{-ika}) = ge^{iQa} (A+B)
+\end{cases}
+$$
+where $g=\frac{2mV_0}{\hbar^2}$. By rearranging terms one gets to 
+$$\begin{cases}
+    A(e^{ika} - e^{iQa}) + B(e^{-ika} - e^{iQa}) = 0 \\
+    A[ik(e^{iQa} - e^{ika}) - ge^{iQa}] + B[ik(e^{-ika} - e^{iQa}) - ge^{iQa}] = 0
 \end{cases}$$
-which can be reduced
+The system of equations can be solved via the determinant method 
 \begin{equation*}
-    \cos(Qa) = \cos(ka) + \frac{V_0}{2ka} \sin(ka)
+    \begin{vmatrix} e^{ika} - e^{iQa} & e^{-ika} - e^{iQa} \\ ik(e^{iQa} - e^{ika}) - ge^{iQa} & ik(e^{-ika} - e^{iQa}) - ge^{iQa} \end{vmatrix} = 0
+\end{equation*} 
+After some algebra the expression can be reduced to
+\begin{equation*}
+    (e^{ika} - e^{iQa}) \ [ik(e^{-ika} - e^{iQa}) - ge^{iQa}] \ - \ (e^{-ika}-e^{iQa}) \ [ik(e^{iQa}-e^{ika})-ge^{iQa}] = 0
 \end{equation*}
+\begin{equation}
+    \cos(Qa) = \cos(ka) + \frac{2mV_0}{k\hbar^2} \sin(ka)
+    \label{eq:trascendent_equation}
+\end{equation}
 The admitted values of $k$ for the system are those that satisfy the above equation. The corresponding energies are then $E_k = \frac{\hbar^2k^2}{2m}$.
-The last equation has solution only if $|cos(ka) + \frac{V_0}{2ka} \sin(ka)| < 1$. 
-For $|cos(ka) + \frac{V_0}{2ka} \sin(ka)| > 1$ there are no solutions: this means that therethose $k-$vectors are admitted by the system, hence those energies are not admitted.
+The last equation can have a solution only if $|cos(ka) + \frac{V_0}{2ka} \sin(ka)| < 1$. 
+For $|cos(ka) + \frac{V_0}{2ka} \sin(ka)| > 1$ there are no solutions: this means that those $k-$vectors are not admitted by the system, hence those energies are not admitted too.
+The function on the right side of \ref{eq:trascendent_equation} is reported graphically in figure \ref{fig:trascendent_equation}. Possible solutions lie in the green area and the precise values of admitted $k$s
+depend on the value of the parameter $Q = \frac{2\pi n}{Na}$. In the limit of large $N$ this parameter becomes continous and all the $k$ values such that $|cos(ka) + \frac{V_0}{2ka} \sin(ka)| < 1$ are admitted. \\
+When $V_0 \to 0$ equation \ref{eq:trascendent_equation} becomes $\cos(Qa) = \sin(ka)$ and the solutions are $k = Q + 2\pi m/a$: the allowed regions get wider and the forbidden regions narrower. By the way, if $V_0=0$ exactly then all the deltas in the potential 
+disappear, $a$ becomes $0$ and all the $k$ values are admitted: this makes sense because we removed the potential and we reduced to the free particle cases. \\
+On the other hand, if $V_0 \to +\infty$, the only admitted solutions are those such that $k_Ma = M\pi$ or $k = m\pi/a$ whose energies are $E = \frac{\hbar^2 k_M}{2m_e} = M \, \frac{\hbar^2\pi^2}{2m a^2}$.
+\begin{figure}[hbp]
+    \centering
+    \includegraphics[scale=0.5]{scripts/trascendent.eps}
+    \caption{Solution to the Kroning-Penney problem. The admitted $k$ vectors are those point such that the function values are contained in the blue area, that is when $|cos(ka) + \frac{V_0}{2ka} \sin(ka)| <= 1$. In the limit of 
+    $N \to +\infty$ all these values are admitted, but when $N$ is finite $Q$ is not a continuous parameter and the condition $|cos(ka) + \frac{V_0}{2ka} \sin(ka)| < 1$ is a necessary but not sufficient condition for the solution of \ref{eq:trascendent_equation}.}
+    \label{fig:trascendent_equation}
+\end{figure}
 
+\newpage
 
-\section*{Exercise 3}
+\section*{Disordered systems (relaxation of energy)}
 
 \subsubsection*{(a)}
 One possible way describe a disordered material is by mean of a two-level system. According to this model there are single atoms or group of atoms in the material that can lie in one of two adiacent minima of 
