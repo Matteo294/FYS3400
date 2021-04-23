@@ -1,8 +1,11 @@
 import numpy as np 
 from matplotlib import pyplot as plt 
-from math import sin
+from math import sin, cos
+from scipy.optimize import fsolve
 
-def sinc(xarr, A=1):
+def sinc(xarr, A=10):
+    if isinstance(xarr, (int, float)):
+        xarr = [xarr]
     v = []
     for x in xarr:
         if x == 0:
@@ -10,6 +13,11 @@ def sinc(xarr, A=1):
         else:
             v.append(A*sin(x)/x)
     return v
+
+def func(Q, k):
+    print(np.cos(k) + sinc(k))
+    return np.cos(k) + sinc(k) - np.cos(Q)
+
 
 xline = np.linspace(-20, 20, 10000)
 plt.plot([-20, 20], [1, 1], color='gray')

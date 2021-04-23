@@ -9,6 +9,8 @@
     \centerline{\LARGE FYS3400 - Mandatory assignement II}
     \vspace{10pt}
     \centerline{\large\textbf{Candidate number}: 113}
+    \vspace{10pt}
+    \centerline{23 April 2021}
 \end{center}
 
 \section{Electrons I (FEFG)}
@@ -16,14 +18,14 @@
 \subsubsection*{(a)}
 For a system at temperature $T$ the free energy is given by 
 \begin{equation}
-    G(p, T) = E + pV - TS
+    G(p, V) = E + pV - TS
     \label{eq:FreeEneergy}
 \end{equation}
 where the pressure $p$, the volume $V$ and the temperature $T$ are connected through a state equation of the type $\phi(p, V, T) = 0$ that depends
 on the system. \\
 For $T=0$ equation \ref{eq:FreeEneergy} reduces to
 \begin{equation}
-    G(p, T) = E + pV
+    G(p, V) = E + pV
 \end{equation}
 where $E$ is the energy of the system. \\
 In the Free Fermi Electron Gas model the energy can be computed as
@@ -57,7 +59,7 @@ so that \ref{eq:energy_FEFG} becomes
 \begin{equation*}
     E \equiv E(T=0) = \frac{V}{2\pi^2} \ \left(\frac{2m}{\hbar^2}\right)^{3/2} \int_{E_{min}}^{E_{max}} \epsilon^{3/2} \, d\epsilon
 \end{equation*}
-In the last integral the extrema are $E_{min} = 0$ and $E_{max} = \epsilon_F$,. $E_F$ is the Fermi energy which is, by definition, the energy of 
+In the last integral the extrema are $E_{min} = 0$ and $E_{max} = \epsilon_F$,. $\epsilon_F$ is the Fermi energy which is, by definition, the energy of 
 the last occupied state. Hence
 \begin{equation}
     E = \frac{V}{5\pi^2} \ \left(\frac{2m}{\hbar^2}\right)^{3/2} \, \epsilon_F^{5/2}
@@ -72,7 +74,7 @@ equation \ref{eq:energy_energyfermi} becomes
     E = \frac{V^{-2/3}}{5\pi^2} \frac{\hbar^2}{2m} \, (3\pi^2N)^{5/3}
 \end{equation*}
 The pressure can then be calculated by the Maxwell relation 
-$$p = -\frac{\partial E}{\partial V} = \frac{2}{3} \ \frac{1}{5\pi^2 V^{2/3}} \ \frac{\hbar^2}{2m} (3\pi^2N)^{5/3} = \frac{2}{3}\frac{E}{V}$$
+$$p = -\frac{\partial E}{\partial V} = \frac{2}{3} \ \frac{1}{5\pi^2 V^{5/3}} \ \frac{\hbar^2}{2m} (3\pi^2N)^{5/3} = \frac{2}{3}\frac{E}{V}$$
 so that 
 $$G = E + pV = \frac{5}{3} E = \frac{V}{3\pi^2} \ \left(\frac{2m}{\hbar^2}\right)^{3/2} \, \epsilon_F^{5/2}$$
 which can be rearranged as
@@ -94,7 +96,7 @@ occurs at $\epsilon = \epsilon_F$, where the approximated function ($\mu = \epsi
     \centering 
     \includegraphics[scale=0.5]{scripts/f_fd_mu.png}
     \caption{Fermi-Dirac distribution for various temperature values. The continous lines correspond to 
-    the distribution drawn by keeping the chemical potential constant at $\mu=epsilon_F$, while the dashed lines represent the true relations.}
+    the distribution drawn by keeping the chemical potential constant at $\mu=\epsilon_F$, while the dashed lines represent the true relations.}
     \label{fig:fFD_mu}
 \end{figure}
 
@@ -117,12 +119,13 @@ but on the other side
     n = \int_0^{+\infty} \, 2DOS(\epsilon) \, f_{FD}(\epsilon) \, d\epsilon
     \label{eq:n_elect2}
 \end{equation}
+In both cases the factor 2 takes account that the number of electrons is two times the number of states but it obviously simplifies. \\
 One can now impose the equality between \ref{eq:n_elect1} and \ref{eq:n_elect2}: in particular expression \ref{eq:n_elect2} is a function of the chemical potential $\mu$ and the temperature $T$ and 
 the equation can be written as 
 \begin{equation*}
     N_0 = g(\mu, T)
 \end{equation*}
-where $N_0$ is given by \ref{eq:n_elect1} and $g(\mu, T)$ is the result of the integral in \ref{eq:n_elect2}. \\
+where $N_0$ is given by \ref{eq:N_orbitals} for $\epsilon=\epsilon_F$ and $g(\mu, T)$ is the result of the integral in \ref{eq:n_elect2} without the factor 2. \\
 The equation can be solved numerically using the following procedure:
 \begin{enumerate}
     \item Fix a value for the temperature $T_1$
@@ -134,13 +137,12 @@ In this way we obtain multiple couples $(T_i, \mu_i)$ that can be plotted to giv
 \begin{figure}[hbtp]
     \centering 
     \includegraphics[scale=0.7]{scripts/mu_T.eps}
-    \caption{Chemical potential as a function of temperature. The small window on top right is a zoom on the low-temperature area. For low temperatures
-    the chemical potential dependence on the temperature can be well approximated by a parabola of the type $\mu(T) = \mu(T=0) - \alpha T^2 + o(T^2) = \epsilon_F - \alpha T^2 + o(T^2)$}
+    \caption{Chemical potential as a function of temperature. The small window on top right is a zoom on the low-temperature area.}
     \label{fig:chemical_potential}
 \end{figure}
 
 \subsubsection*{(d)}
-The curves are already reported in figure \ref{fig:fFD_mu} as dashed lines, but I report them in figure \ref{fig:fFD_mu_T} alone for clarity
+The curves are already reported in figure \ref{fig:fFD_mu} as dashed lines, but I report them in figure \ref{fig:fFD_mu_T} alone for clarity.
 \begin{figure}[htbpb]
     \centering
     \includegraphics[scale=0.5]{scripts/f_fd_mu_T.eps}
@@ -169,7 +171,7 @@ Let us now consider the quantum limit $k_BT \ll \epsilon_F$: $\frac{df_{FD}}{d\e
 in a small region of width $2k_BT$ centered in $\epsilon=\epsilon_F$. Hence
 \begin{equation*}
     C \approx DOS(\epsilon_F) \int_0^{+\infty} \frac{\partial f_{FD}(\epsilon, T)}{\partial T} \, (\epsilon - \epsilon_F) \, d\epsilon = 
-    DOS(\epsilon_F) k_B^2T \int_{-\epsilon_F/k_BT}^{+\infty} \frac{e^x}{(e^x + 1)^2} \, dx 
+    DOS(\epsilon_F) k_B^2T \int_{-\epsilon_F/k_BT}^{+\infty} \frac{xe^x}{(e^x + 1)^2} \, dx 
 \end{equation*}
 where I made the change of variable $x=(\epsilon - \epsilon_F)/k_BT$ and I used the fact that 
 \begin{equation*}
@@ -179,8 +181,10 @@ and I used the approximation $\mu \approx \epsilon_F$ (valid for the low tempera
 Since we assumed $k_BT \ll \epsilon_F$ the lower extrema can be approximated to $-\infty$. The integral is now a known integral and the value is $\pi^2/3$. Using the fact that 
 $DOS(\epsilon_F) = \frac{3N}{2\epsilon_F}$ the estimated specific heat is 
 \begin{equation*}
-    C \approx \frac{\pi^2}{2} N k_B \frac{T}{\epsilon_F} = \frac{\pi^2N}{2}\frac{T}{T_F}
+    C \approx \frac{\pi^2}{2} N k_B^2 \frac{T}{\epsilon_F} = \frac{\pi^2Nk_B}{2}\frac{T}{T_F}
 \end{equation*}
+Only those electrons in a range of few $k_BT$ around $\epsilon_F$ contribute to the heat capacity, since those electrons are 
+the only that can get thermally excited.
 
 \newpage
 
@@ -192,9 +196,9 @@ Let us first consider a simple delta potential $V(x) = V_0 \, \delta(x)$ and the
 \end{equation*}
 Let us integrate both members between $-\epsilon$ and $+\epsilon$ and let $\epsilon \to 0$, we obtain 
 \begin{equation*}
-    \lim_{\epsilon \to 0} -\frac{\hbar^2}{2m} \left(\psi'(\epsilon) - \psi'(-\epsilon)\right) + V_0\int_{-\epsilon}^{+\epsilon} \delta(x) \psi(x) = \lim_{\epsilon \to 0} 2\epsilon E \psi(0)
+    \lim_{\epsilon \to 0} -\frac{\hbar^2}{2m} \left(\psi'(\epsilon) - \psi'(-\epsilon)\right) + V_0\int_{-\epsilon}^{+\epsilon} \delta(x) \psi(x) = \lim_{\epsilon \to 0} 2\epsilon E \psi(0) + o(\epsilon)
 \end{equation*} 
-or 
+that is
 \begin{equation*}
     \psi'(0^+) - \psi'(0^-) = \frac{2mV_0}{\hbar^2}\psi(0)
 \end{equation*}
@@ -229,7 +233,7 @@ or equivalently
 Let us now impose the continuity of $\psi(x)$ and the discontinuity of $\psi'(x)$ on the edge between the two zones at $x=a$
 $$\begin{cases}
     \psi_I(a^-) = \psi_{II}(a^+) \\
-    \psi_{II}(a^+) - \psi_{I}(a^-) = \frac{2mV_0}{\hbar^2} \ \psi(a)
+    \psi_{II}'(a^+) - \psi_{I}'(a^-) = \frac{2mV_0}{\hbar^2} \ \psi(a)
 \end{cases}
 \qquad
 \begin{cases}
@@ -246,27 +250,28 @@ The system of equations can be solved via the determinant method
 \begin{equation*}
     \begin{vmatrix} e^{ika} - e^{iQa} & e^{-ika} - e^{iQa} \\ ik(e^{iQa} - e^{ika}) - ge^{iQa} & ik(e^{-ika} - e^{iQa}) - ge^{iQa} \end{vmatrix} = 0
 \end{equation*} 
-After some algebra the expression can be reduced to
+or
 \begin{equation*}
     (e^{ika} - e^{iQa}) \ [ik(e^{-ika} - e^{iQa}) - ge^{iQa}] \ - \ (e^{-ika}-e^{iQa}) \ [ik(e^{iQa}-e^{ika})-ge^{iQa}] = 0
 \end{equation*}
+After some algebra the expression can be reduced to
 \begin{equation}
     \cos(Qa) = \cos(ka) + \frac{2mV_0}{k\hbar^2} \sin(ka)
     \label{eq:trascendent_equation}
 \end{equation}
 The admitted values of $k$ for the system are those that satisfy the above equation. The corresponding energies are then $E_k = \frac{\hbar^2k^2}{2m}$.
-The last equation can have a solution only if $|cos(ka) + \frac{V_0}{2ka} \sin(ka)| < 1$. 
-For $|cos(ka) + \frac{V_0}{2ka} \sin(ka)| > 1$ there are no solutions: this means that those $k-$vectors are not admitted by the system, hence those energies are not admitted too.
-The function on the right side of \ref{eq:trascendent_equation} is reported graphically in figure \ref{fig:trascendent_equation}. Possible solutions lie in the green area and the precise values of admitted $k$s
-depend on the value of the parameter $Q = \frac{2\pi n}{Na}$. In the limit of large $N$ this parameter becomes continous and all the $k$ values such that $|cos(ka) + \frac{V_0}{2ka} \sin(ka)| < 1$ are admitted. \\
-When $V_0 \to 0$ equation \ref{eq:trascendent_equation} becomes $\cos(Qa) = \sin(ka)$ and the solutions are $k = Q + 2\pi m/a$: the allowed regions get wider and the forbidden regions narrower. By the way, if $V_0=0$ exactly then all the deltas in the potential 
+The last equation can have a solution only if $|cos(ka) + \frac{2mV_0}{k\hbar^2} \sin(ka)| < 1$. 
+For $|cos(ka) + \frac{2mV_0}{k\hbar^2} \sin(ka)| > 1$ there are no solutions: this means that those $k-$vectors are not admitted by the system, hence those energies are not admitted too.
+The function on the right side of \ref{eq:trascendent_equation} is reported graphically in figure \ref{fig:trascendent_equation}. Possible solutions lie in the green area and the precise values of admitted $k$
+depend on the value of the parameter $Q = \frac{2\pi n}{Na}$. In the limit of large $N$ this parameter becomes continous and all the $k$ values such that $|cos(ka) + \frac{2mV_0}{k\hbar^2} \sin(ka)| < 1$ are admitted. \\
+When $V_0 \to 0$ equation \ref{eq:trascendent_equation} becomes $\cos(Qa) = \cos(ka)$ and the solutions are $k = Q + 2\pi m/a$: the allowed regions get wider and the forbidden regions narrower. By the way, if $V_0=0$ exactly then all the deltas in the potential 
 disappear, $a$ becomes $0$ and all the $k$ values are admitted: this makes sense because we removed the potential and we reduced to the free particle cases. \\
-On the other hand, if $V_0 \to +\infty$, the only admitted solutions are those such that $k_Ma = M\pi$ or $k = m\pi/a$ whose energies are $E = \frac{\hbar^2 k_M}{2m_e} = M \, \frac{\hbar^2\pi^2}{2m a^2}$.
+On the other hand, if $V_0 \to +\infty$, the only admitted solutions are those such that $k_Ma = M\pi$ or $k = M\pi/a$ whose energies are $E = \frac{\hbar^2 k_M}{2m} = M \, \frac{\hbar^2\pi^2}{2m a^2}$.
 \begin{figure}[hbp]
     \centering
     \includegraphics[scale=0.5]{scripts/trascendent.eps}
-    \caption{Solution to the Kroning-Penney problem. The admitted $k$ vectors are those point such that the function values are contained in the blue area, that is when $|cos(ka) + \frac{V_0}{2ka} \sin(ka)| <= 1$. In the limit of 
-    $N \to +\infty$ all these values are admitted, but when $N$ is finite $Q$ is not a continuous parameter and the condition $|cos(ka) + \frac{V_0}{2ka} \sin(ka)| < 1$ is a necessary but not sufficient condition for the solution of \ref{eq:trascendent_equation}.}
+    \caption{Solution to the Kroning-Penney problem. The admitted $k$ vaues are those points such that the function values are contained in the blue area, that is when $|cos(ka) + \frac{2mV_0}{k\hbar^2} \sin(ka)| <= 1$. In the limit of 
+    $N \to +\infty$ all these values are admitted, but when $N$ is finite $Q$ is not a continuous parameter and the condition $|cos(ka) + \frac{2mV_0}{k\hbar^2} \sin(ka)| < 1$ is a necessary but not sufficient condition for the solution of \ref{eq:trascendent_equation}.}
     \label{fig:trascendent_equation}
 \end{figure}
 
@@ -275,8 +280,8 @@ On the other hand, if $V_0 \to +\infty$, the only admitted solutions are those s
 \section*{Disordered systems (relaxation of energy)}
 
 \subsubsection*{(a)}
-One possible way describe a disordered material is by mean of a two-level system. According to this model there are single atoms or group of atoms in the material that can lie in one of two adiacent minima of 
-a potential and can quantum tunnel between the states. In this sense each of these atoms (or aggregate of atoms) can be seen as a two-level system. The energy of the whole system is then the sum of the energies of each two-level system (TLS). \\
+One possible way describe a disordered material is by means of a two-level system. According to this model there are single atoms or group of atoms in the material that can lie in one of two adiacent minima of 
+a potential and can quantum tunnel between the the two states. In this sense each of these atoms (or aggregate of atoms) can be seen as a two-level system. The energy of the whole system is then the sum of the energies of each two-level system (TLS). \\
 Let us label the minima $1$ and $2$ with related energies $E_1=0$ and $E_2=\epsilon$. \\
 Each TLS can be described as a member of a canonical ensemble whose partition function is $Z = e^{-\beta E_1} + e^{-\beta E_2} = 1 + e^{-\beta \epsilon}$ where $\beta = 1/k_BT$. According to this, the probabilities for each TLS to be in one of the two levels are
 \begin{equation*}
@@ -309,7 +314,7 @@ where
     \frac{1}{\tau(\epsilon)} = K \, \epsilon^3 \coth\left(\frac{\beta\epsilon}{2}\right)
     \label{eq:tau_eps}
 \end{equation}
-By inserting \ref{eq:tau_eps} into \ref{eq:heat_capacity} one obtains
+By inserting \ref{eq:DOS_t_dep} into \ref{eq:heat_capacity} one obtains
 \begin{equation}
     C = \frac{k_BP_0}{2} \ \int_0^{+\infty} \log\left(\frac{4t}{\tau(\epsilon)}\right) \ \frac{\beta^2\epsilon^2 e^{\beta\epsilon}}{(e^{\beta \epsilon} + 1)^2}
     \label{eq:big_integral}
@@ -317,7 +322,7 @@ By inserting \ref{eq:tau_eps} into \ref{eq:heat_capacity} one obtains
 The integral cannot be solved analytically but it can be approximated as explained in the following lines. \\
 The function $E_{TLS}(\epsilon) = \beta^2\epsilon^2e^{\beta\epsilon}/(e^{\beta\epsilon} + 1)^2$ is peaked at the point
 $\epsilon \approx 2.5/\beta = 2.5 \, k_B T$ and the peak becomes more narrow as the temperature decreases (or $\beta$ increases). This means that the integrand is significantly far from zero only 
-in a narrow region around $\epsilon_0 \approx 2.5 k_B T$. Let us call $\epsilon_{min}$ and $\epsilon_{max}$ the two extrema of the peak area (see figure \ref{fig:peak} on the left). In this region the other term in the integral $DOS(\epsilon) = \log(4t/\tau(\epsilon))$
+in a narrow region around $\epsilon_0 \approx 2.5 k_B T$ as shown in figure \ref{fig:peak} on the left. Let us call $\epsilon_{min}$ and $\epsilon_{max}$ the two extrema of the peak area (points in which f(x) = max(f(x))/5). In this region the other term in the integral $DOS(\epsilon) = \log(4t/\tau(\epsilon))$
 is practically constant as can be seen in figure \ref{fig:peak} on the right. 
 \begin{figure}[htp]
 \centering
@@ -333,7 +338,7 @@ outside the grey area, the integral can be well approximated considering the con
 slowly and can be indeed approximated by a constant value.}
 \label{fig:peak}
 \end{figure}
-This means that one can approximate it with the value in the $\epsilon_0$, that is
+This means that one can approximate it with the value in $\epsilon_0$, that is
 \begin{equation*}
     DOS(\epsilon, t) = \log(4t/\tau(\epsilon)) \approx \log(4t/\tau(\epsilon_0)) \qquad \text{for} \quad \epsilon \in [\epsilon_{min}, \epsilon_{max}]
 \end{equation*}
@@ -352,10 +357,10 @@ Let us consider a system at temperature $T_1$ and a reservoir at temperature $T_
 with the reservoir the temperature of the system decreases or increases until it reaches $T_0$. One can calculate the energy difference between the two states: this can be done in two ways:
 \begin{enumerate}
     \item By integrating the specific heat between the two temperatures
-    \item By using the definition of average energy in a canonical ensemble
+    \item By using the definition of average energy in a canonical ensemble and derive with respect to time the energy difference between the initial and final state.
 \end{enumerate}
-I hereby follow the second path but it is competely equivalent to the first one. \\
-One now has that
+I hereby follow the second path but it is competely equivalent to the first one and it yields the same result. \\
+One has that the energy difference is
 \begin{equation*}
     \Delta E = E(T_1) - E(T_0)
 \end{equation*}
