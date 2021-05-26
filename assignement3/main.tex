@@ -15,7 +15,7 @@
     \centerline{\today}
 \end{center}
 
-\section*{Ex1}
+\section*{Exercise 1}
 The text of the exercise provides a basis for the honeycomb lattice related to a 2D graphene sheet that is 
 \begin{equation*}
     \ve a_1 = \frac{3a}{2} \, \ve e_x + \frac{\sqrt{3}a}{2} \, \ve e_y \qquad
@@ -28,7 +28,7 @@ where $a = \SI{0.142}{\nano\meter}$. In addition we know that the energy dispers
 where the sign in front of $t$ determines whether we are dealing with the valence band (sign "+") or the conduction band (sign "-"). \\
 A suitable choice for the basis $(\ve b_1, \ve b_2)$ in the reciprocal lattice can be obtained via the relation
 \begin{equation}
-    a_i b_j = 2\pi \delta_{ij}
+    \ve a_i \cdot \ve b_j = 2\pi \delta_{ij}
     \label{eq:reciprocal_condition}
 \end{equation}
 By writing $\ve b_1$ and $\ve b_2$ in a general form $\ve b_1 = c_1 \ve e'_x + c_2 \ve e'_y$, $\ve b_2 = c_1 \ve e'_x + c_2 \ve e'_y$ and substituting them into equation \ref{eq:reciprocal_condition} one obtains 4 conditions
@@ -70,6 +70,13 @@ By denoting by $\ve u$ a general vector, the electrons' effective mass along $\v
     \label{eq:effective_mass_der1}
 \end{equation}
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.4]{energy.png}
+    \caption{Energy dispersion relation in a 2D graphene sheet}
+    \label{fig:3dplot}
+\end{figure}
+
 \subsubsection*{(a)}
 Figure \ref{fig:E_k} reports the energy function along $\ve u_1, \ve u_2$ and $\ve u_3$.
 The green line is the boundary of the conduction band, while the blue one represents the upper limit of the valence band.
@@ -105,7 +112,7 @@ Let us take again expression \ref{eq:effective_mass_der1} along $k_x$. In the li
 \begin{equation*}
     m_{e, \ve k_x}^* \approx \hbar^2 \frac{2}{3a^2t} = 0.839 \, m_e
 \end{equation*}
-The result coincides with the one obtained via the second derivative
+The result coincides numericaly with the one obtained via the second derivative approach
 \begin{equation*}
     m_{e, \ve k_x}^* = \hbar^2\left(\frac{\partial^2 E(\ve k)}{\partial k_x^2}\right)^{-1} = \hbar^2\left(\frac{\partial^2 E(\ve k)}{\partial k_y^2}\right)^{-1}
 \end{equation*}
@@ -114,34 +121,34 @@ Note also that at the edge of the Brillouin zone the mass diverges!
 
 \newpage
 
-\section*{Ex2}
+\section*{Exercise 2}
 The electrons' density of states in the conduction band is 
 \begin{equation*}
     D_{e}(\boldsymbol{\epsilon})=\frac{1}{2 \pi^{2}}\left(\frac{2 m_{e}}{\hbar^{2}}\right)^{3 / 2}\left(\boldsymbol{\epsilon}-E_{c}\right)^{1 / 2}
 \end{equation*}
 hence the number of intrinsic carriers in the conduction band at temperature $T$ can be calculated as 
 \begin{gather*}
-    n(T) = \int_{E_C}^{+\infty} D_e(T) \ f_{FD}(T) \ d\epsilon = \\
+    n(T) = \int_{E_C}^{+\infty} D_e(\epsilon) \ f_{FD}(\epsilon) \ d\epsilon = \\
     = \frac{1}{2 \pi^{2}}\left(\frac{2 m_{e}}{\hbar^{2}}\right)^{3 / 2}\int_{E_C}^{+\infty} \left(\boldsymbol{\epsilon}-E_{c}\right)^{1 / 2} \ \frac{1}{1+\exp\left((\epsilon - E_f)/k_BT\right)} \ d\epsilon \approx \\ 
     \approx \frac{1}{2 \pi^{2}}\left(\frac{2 m_{e}}{\hbar^{2}}\right)^{3 / 2}\int_{E_C}^{+\infty} \left(\boldsymbol{\epsilon}-E_{c}\right)^{1 / 2} \ \exp\left((\epsilon-E_f)/k_BT\right) \ d\epsilon = \\
     = 2 \left(\frac{m_ek_BT}{2\pi\hbar^2}\right)^{3/2} \, \exp\left(\frac{E_f-E_C}{k_BT}\right) \equiv N_C \exp\left(\frac{E_f-E_C}{k_BT}\right)
 \end{gather*} 
-In a similar fashion the concentration of holes is 
+In a similar way the concentration of holes is 
 \begin{gather*}
-    p(T) = \int_{E_C}^{+\infty} D_e(T) \ f_{FD}(T) \ d\epsilon = \\
+    p(T) = \int_{E_C}^{+\infty} D_e(\epsilon) \ \left(1-f_{FD}(\epsilon)\right) \ d\epsilon = \\
     = 2 \left(\frac{m_hk_BT}{2\pi\hbar^2}\right)^{3/2} \, \exp\left(\frac{E_V-E_f}{k_BT}\right) \equiv N_V \exp\left(\frac{E_V-E_f}{k_BT}\right)
 \end{gather*}
 and one can notice that  
 \begin{equation*}
-    p(T)n(T) = N_CN_V \exp\left(\frac{E_V-E_C}{k_bT}\right) \equiv n_i^2(T)
+    p(T) \, n(T) = N_CN_V \exp\left(\frac{E_V-E_C}{k_bT}\right) \equiv n_i^2(T)
 \end{equation*}
-For intrinsic carriers one has that $n(T)=p(T)=n_i(T)$, while in general 
+For intrinsic carriers one has that $n(T)=p(T)=n_i(T)$, while in general one can rewrite $n(T)$ and $p(T)$ as
 \begin{gather}
     n(T) = n_i(T)\exp\left(\frac{E_f-E_i}{k_BT}\right) 
     \label{eq:n(T)} \\
     p(T) = n_i(T)\exp\left(\frac{E_i-E_f}{k_BT}\right)
 \end{gather}
-These expression give the number of conduction electrons as a function of temperature. To obtain
+Expression \ref{eq:n(T)} give the number of conduction electrons as a function of temperature. To obtain
 the expression of the fermi energy it is convenient to make use of the \emph{Mass-Action law}. In a doped semiconductor the Mass-Action law estabilishes that
 \begin{equation*}
     N_D^+ + p = N_A^- + n
@@ -151,11 +158,13 @@ or, in the case of $N_A^- = 0$ as in this case
     N_D^+ + p = n
     \label{eq:charge_balance}
 \end{equation}
+Let us call $E_D$ the energy difference between the donors's energy level and the lower limit of the conduction band.
 The number of ionized donors at temperature $T$ is given by
 \begin{equation*}
     N_D^+ = N_D \left(1 - \frac{1}{1+\frac{1}{2}\exp\left(\frac{E_D-E_f}{k_BT}\right)}\right) = \frac{N_D}{1 + 2\exp\left(\frac{E_f-E_D}{k_BT}\right)}
 \end{equation*}
-hence equation \ref{eq:charge_balance} becomes 
+where the factor $1/2$ in the Fermi-Dirac distribution takes account of the spin degeneracy. \\
+Equation \ref{eq:charge_balance} becomes 
 \begin{equation*}
     n_i(T)\exp\left(\frac{E_f-E_i}{k_BT}\right) + \frac{N_D}{1 + 2\exp\left(\frac{E_f-E_D}{k_BT}\right)} - n_i(T)\exp\left(\frac{E_i-E_f}{k_BT}\right) = 0
 \end{equation*}
@@ -164,33 +173,66 @@ or
     2 \, n_i(T) \, \sinh\left(\frac{E_f-E_i}{k_BT}\right) + \frac{N_D}{1 + 2\exp\left(\frac{E_f-E_D}{k_BT}\right)} = 0
 \end{equation*}
 This equation can be solved numerically for $E_f$, the value of which can be popped into \ref{eq:n(T)} to obtain the concentration of conducting electrons.
-The energy $E_i$ called the \emph{intrinsic Fermi energy} is a function of the effective mass of the electrons and holes in the semiconductor. It can be easilly calculated
-in the intrinsic case by imposing $n(T) = p(T)$. After some algebra one gets that 
+The energy $E_i$, namely the \emph{intrinsic Fermi energy}, is a function of the effective mass of the electrons and holes in the semiconductor. It can be easilly calculated
+in the intrinsic case by imposing $n(T) = p(T)$, that is 
 \begin{equation*}
-    E_i = \frac{1}{2}E_g + \frac{3}{4}k_BT\log\left(\frac{m_h}{m_e}\right)
+    N_C e^{\frac{E_{f}-E_C}{k_B T}} = N_V e^{\frac{E_V- E_{f}}{k_B T}}
 \end{equation*}
+After some algebra one gets that 
+\begin{equation*}
+    E_i = \frac{1}{2}E_g + \frac{3}{4}k_BT\log\left(\frac{m_h^*}{m_e^*}\right)
+\end{equation*}
+where $E_g = E_C - E_D$ is the energy gap, $m_h^*$ and $m_e^*$ are the effective masses of holes and electrons. \\
+Both $E_F$ and $E_i$ as functions of temperature are reported in figure \ref{fig:efei}. Here I report the values of the parameters that I used in the analysis
+\begin{center}\begin{gather*}
+    m_e^* = 1.08 \, m_e \qquad m_h^* = 0.56 \, m_e \\
+    E_V = \SI{0}{\electronvolt} \qquad E_c = E_g = \SI{1.1}{eV} \\
+    E_D = \SI{1.055}{\electronvolt} \qquad N_d = 10^{17} \small{\frac{P}{cm^3}} 
+\end{gather*}\end{center}
 
-\subsection*{Approximation}
-\subsubsection*{Low temperature}
+\begin{figure}[h]
+    \centering 
+    \includegraphics[scale=0.6]{efei.eps}
+    \caption{Fermi energy and intrinsic fermi energy in a silicon semiconductor with doping concentration $10^{17} P/cm^3$}
+    \label{fig:efei}
+\end{figure}
+
+\subsubsection*{Low temperature (freeze-out region)}
 In the regime of low temperature, in first approximation, all the electrons in the conduction band come from ionized impurities since they are higher in energy than the electrons in the valence band.
 Hence, for low $T$:
 \begin{equation*}
-    n(T) \approx N_D^+(T)
+    n(T) \approx N_D^+(T) = \frac{N_D}{1 + 2\exp\left(\frac{E_f-E_D}{k_BT}\right)}
 \end{equation*}
-which means that equation \ref{eq:charge_balance} requests 
-\begin{gather*}
-    N_D \left(1 - \frac{1}{1+\exp\left((E_D-E_f)/k_BT\right)}\right) = 2 \left(\frac{mk_BT}{2\pi\hbar^2}\right)^{3/2} \, \exp\left(\frac{E_f-E_C}{k_BT}\right)
-\end{gather*}
-\subsubsection*{Medium temperature}
+The approximated expression for the fermi energy can be obtained by imposing 
+\begin{equation*}
+    n(T) \approx N_D^+(T) \qquad \longleftrightarrow \qquad \frac{N_D}{1 + 2\exp\left(\frac{E_f-E_D}{k_BT}\right)} = N_C \exp\left(\frac{E_f-E_C}{k_BT}\right)
+\end{equation*}
+and yields
+\begin{equation*}
+    E_{f}=\frac{E_{C}+E_{D}}{2}+\frac{k T}{2}\ln\left(\frac{N_D}{2N_C}\right)
+\end{equation*}
+\subsubsection*{Medium temperature (extrinsic region)}
 For medium temperature all the impurities are ionized and only few electrons are excited from the valence band, hence 
 \begin{equation*}
     n(T) \approx N_D
 \end{equation*}
-\subsubsection*{High temperature}
+\subsubsection*{High temperature (intrinsic region)}
 Finally, for high temperature, impurities and intrinsic donors both contribute to the number of electrons, but the number of intrinsic carries is normally way greater than 
 the number of impurities addded, hence 
 \begin{equation*}
-    n(T) \approx n_i(T)
+    n(T) \approx n_i(T) = N_C \exp\left(\frac{E_f-E_C}{k_BT}\right)
 \end{equation*}
+The fermi energy is approximately equal to the intrinsic fermi energy, since we are neglecting the donors' contribution.
+\vspace{10pt}
+All the approximated analytical results together with the numerical one are reported in figure \ref{fig:concentration}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.6]{concentration.eps}
+    \caption{Carrier concentration in a silicon semiconductor with doping concentration $10^{17} P/cm^3$.}
+    \label{fig:concentration}
+\end{figure}
+
+
 
 \end{document}
